@@ -1,0 +1,460 @@
+/* homepage only styles for ghumgham
+   shared stuff (header, footer, buttons) is in common.css
+   all photos go in the images folder, the file names are in the src of each img */
+
+
+/* =================== hero =================== */
+.hero-wrap { padding: 0 20px; }
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 575px;
+  border-radius: 16px;
+  text-align: center;
+  color: var(--white);
+  background: #172a4f; /* shows only while the first photo loads */
+  isolation: isolate;
+}
+
+.hero img {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  border-radius: 16px;
+  opacity: 0;
+}
+
+/* the new photo fades in on top, the old one stays under it until the fade is done, so two photos never mix */
+.hero img.leaving { z-index: 0; opacity: 1; }
+.hero img.active { z-index: 1; opacity: 1; transition: opacity 1.2s ease; }
+
+/* dark layer over the photo so the white text is readable */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: 16px;
+  background: rgba(10, 20, 50, 0.35);
+}
+
+.hero-text { position: relative; z-index: 3; }
+
+.hero h1 {
+  font-size: 58px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -1px;
+  margin-bottom: 28px;
+}
+
+.hero h1 b { font-weight: 800; font-style: italic; }
+
+/* progress bar and scroll text at the bottom of the hero */
+.hero-bottom {
+  position: absolute;
+  z-index: 3;
+  left: 84px;
+  right: 84px;
+  bottom: 34px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.progress { display: flex; align-items: center; gap: 10px; }
+
+.progress .bar { position: relative; width: 240px; height: 2px; background: rgba(255, 255, 255, 0.35); }
+
+.progress .bar span {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 25%;
+  background: var(--white);
+  transition: width 0.6s;
+}
+
+.progress .count { font-size: 20px; font-weight: 300; }
+.progress .count small { font-size: 13px; opacity: 0.6; }
+
+.scroll { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 500; }
+
+.scroll .circle {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 1.5px solid var(--white);
+  border-radius: 50%;
+  animation: bob 1.6s infinite;
+}
+
+@keyframes bob { 50% { transform: translateY(4px); } }
+
+
+/* =================== destinations =================== */
+.dest-grid {
+  display: grid;
+  grid-template-columns: 1.95fr 1fr 1fr;
+  grid-template-rows: 238px 238px;
+  gap: 16px;
+}
+
+.dest-card { position: relative; border-radius: 14px; overflow: hidden; color: var(--white); }
+.dest-card.big { grid-row: span 2; }
+.dest-card > img { position: absolute; inset: 0; height: 100%; }
+
+/* dark fade at the bottom so the white text is readable on photos */
+.dest-card .shade { position: absolute; inset: 0; background: linear-gradient(transparent 50%, rgba(0, 0, 0, 0.55)); }
+
+.dest-info { position: absolute; left: 22px; right: 22px; bottom: 22px; }
+.dest-info p { font-size: 14px; margin-top: 8px; }
+
+.dest-name { display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 500; }
+
+.dest-big-row { display: flex; justify-content: space-between; align-items: flex-end; }
+
+
+/* the dark blue card with the compass */
+.dest-explore {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 26px 24px;
+  background: var(--navy-box);
+}
+
+.dest-explore .compass { position: absolute; top: 20px; right: 16px; font-size: 60px; opacity: 0.25; }
+.dest-explore h3 { font-size: 22px; font-weight: 500; line-height: 1.25; }
+.dest-explore p { font-size: 14px; color: #c9c8e6; margin: 10px 0 18px; }
+
+
+/* =================== packages =================== */
+.pkg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+
+/* =================== 40% offer banner =================== */
+.offer {
+  position: relative;
+  height: 424px;
+  padding: 0;
+  overflow: hidden;
+  color: var(--white);
+  background: linear-gradient(90deg, #3a168f, #7a2a86 35%, #d4455f 70%, #e25467);
+}
+
+/* photo on the right like in the design: clear on the right, melting into the purple gradient on the left */
+.offer img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 68%;
+  height: 100%; /* fills the whole banner, not just the photo's own height */
+  object-position: right center;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 45%);
+  mask-image: linear-gradient(90deg, transparent, #000 45%);
+}
+
+/* soft pink wash over the left half of the photo, so it blends with the gradient */
+.offer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 35%, rgba(212, 69, 95, 0.45) 55%, rgba(212, 69, 95, 0) 80%);
+  pointer-events: none;
+}
+
+.offer .container {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* red brush stroke label */
+.brush {
+  padding: 6px 22px;
+  background: var(--red);
+  font-size: 17px;
+  font-weight: 500;
+  clip-path: polygon(4% 8%, 96% 0, 100% 45%, 97% 100%, 3% 94%, 0 50%);
+}
+
+.offer .big { font-size: 72px; font-weight: 800; line-height: 1; margin: 22px 0 18px; }
+.offer h2 { font-size: 46px; font-weight: 800; letter-spacing: -1px; margin-bottom: 26px; }
+
+
+/* =================== about us =================== */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 110px; }
+
+.about-left > p { font-size: 16px; margin: 36px 0 26px; }
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-bottom: 16px;
+  padding: 22px 24px;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--navy);
+  border-radius: 14px;
+  transition: box-shadow 0.3s;
+}
+
+.feature:hover { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06); }
+
+.feature .icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--red);
+  color: var(--white);
+  font-size: 20px;
+}
+
+.feature h4 { color: var(--red); font-size: 17px; font-weight: 500; }
+.feature p { font-size: 14px; }
+
+.about-right > p { font-size: 14px; margin: 26px 0 60px; }
+
+.about-img { position: relative; }
+.about-img img { height: 495px; border-radius: 14px; }
+
+/* the big red 10+ circle */
+.badge {
+  position: absolute;
+  left: -84px;
+  bottom: -26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 198px;
+  height: 198px;
+  border-radius: 50%;
+  background: var(--red);
+  color: var(--white);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.badge strong { font-size: 54px; font-weight: 800; }
+.badge small { font-size: 13px; }
+.badge span { font-size: 22px; font-weight: 500; }
+
+
+/* =================== activities (dark blue box) =================== */
+.act-box {
+  margin-top: 60px;
+  padding: 48px 0 48px 88px; /* no right padding so the photos run off the edge */
+  overflow: hidden;
+  background: var(--navy-box);
+  border-radius: 12px;
+  color: var(--white);
+}
+
+.act-top { display: flex; justify-content: space-between; padding-right: 88px; }
+
+.act-box .script { color: #cfd0f3; font-size: 22px; margin-bottom: 4px; }
+.act-box h2 { max-width: 600px; font-size: 40px; font-weight: 800; line-height: 1.2; }
+
+/* tabs on the right, they fade out as they go down */
+.act-tabs li { margin-bottom: 4px; font-size: 21px; color: rgba(255, 255, 255, 0.55); cursor: pointer; transition: color 0.3s; }
+.act-tabs li:nth-child(3) { color: rgba(255, 255, 255, 0.45); }
+.act-tabs li:nth-child(4) { color: rgba(255, 255, 255, 0.3); }
+.act-tabs li.active,
+.act-tabs li:hover { color: var(--white); }
+
+.act-bottom { display: grid; grid-template-columns: 290px 1fr; gap: 30px; margin-top: 30px; }
+
+.act-info { align-self: end; padding-bottom: 66px; }
+/* activity icon, same size for every activity so the title below never jumps */
+.act-info > i { display: flex; align-items: flex-end; height: 38px; font-size: 34px; }
+.act-info h4 { font-size: 26px; margin: 12px 0 8px; }
+.act-info p { font-size: 14px; line-height: 1.6; color: #d7d6f1; }
+
+/* like the design: a big square photo, then a narrow one, then one cut off by the edge of the navy box
+   the sizes are parts of the row width, so the 4th photo is always hidden past the edge */
+.act-track { display: flex; gap: 2.5%; container-type: inline-size; }
+
+/* active photo is wider than the rest */
+.act-slide { flex-shrink: 0; width: 26%; height: 49cqw; border-radius: 10px; cursor: pointer; transition: width 0.5s; }
+.act-slide.active { width: 49%; }
+
+.act-arrows { display: flex; gap: 12px; margin-top: 18px; }
+
+.act-arrows button {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--white);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--white);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.act-arrows button.fill,
+.act-arrows button:hover { background: var(--white); color: var(--red); }
+
+
+/* =================== testimonials =================== */
+/* the wrap hides the cards that slide out, the track moves inside it
+   --show is how many cards fit in the wrap, the edges fade softly */
+.testi-wrap {
+  --show: 5;
+  margin-top: 40px;
+  padding: 10px 0 24px;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+}
+
+.testi-track { display: flex; gap: 18px; }
+
+.testi-card {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 calc((100% - (var(--show) - 1) * 18px) / var(--show));
+  padding: 18px 16px 14px;
+  background: var(--white);
+  border-radius: 10px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+  text-align: center;
+  transition: opacity 0.5s ease, scale 0.5s ease;
+}
+
+/* the cards on the sides are faded like in the design, homepage.js moves the fade as they slide */
+.testi-card.fade { opacity: 0.4; scale: 0.94; }
+
+/* text takes the spare space so the pink waves line up on every card */
+.testi-card p { flex: 1; min-height: 92px; font-size: 12.5px; }
+
+/* pink wave behind the avatar */
+.wave {
+  height: 34px;
+  margin: 6px -16px 0;
+  background: #fde8ea;
+  border-radius: 60% 40% 0 0 / 30px 20px 0 0;
+}
+
+.avatar {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  margin: -24px auto 6px;
+  border: 3px solid var(--white);
+  border-radius: 50%;
+}
+
+
+.testi-card .stars { color: #f5c542; font-size: 9px; }
+.testi-card h5 { font-size: 12px; font-weight: 600; margin-top: 2px; }
+.testi-card small { font-size: 10px; color: var(--muted); }
+
+.rating { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 26px; font-size: 13px; }
+.rating .stars { color: #f5c542; font-size: 16px; }
+
+
+/* =================== gallery =================== */
+/* 12 column grid, each photo says where it sits */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(6, 54px);
+  gap: 10px;
+}
+
+.gallery img { height: 100%; border-radius: 6px; cursor: zoom-in; } /* a click opens the photo viewer */
+
+.g1 { grid-area: 1 / 1 / 5 / 6; }
+.g2 { grid-area: 5 / 1 / 7 / 4; }
+.g3 { grid-area: 5 / 4 / 7 / 6; }
+.g4 { grid-area: 1 / 6 / 4 / 9; }
+.g5 { grid-area: 4 / 6 / 7 / 9; }
+.g6 { grid-area: 1 / 9 / 3 / 13; }
+.g7 { grid-area: 3 / 9 / 5 / 11; }
+.g8 { grid-area: 3 / 11 / 5 / 13; }
+.g9 { grid-area: 5 / 9 / 7 / 13; }
+
+
+/* =================== tablets =================== */
+@media (max-width: 1024px) {
+  .act-box { padding-left: 50px; }
+  .act-box h2 { font-size: 36px; }
+  .act-tabs li { font-size: 20px; }
+  .act-bottom { grid-template-columns: 240px 1fr; }
+  .testi-wrap { --show: 3; }
+  .about-grid { gap: 60px; }
+  .badge { left: -30px; width: 160px; height: 160px; }
+  .badge strong { font-size: 42px; }
+}
+
+
+/* =================== small tablets and big phones =================== */
+@media (max-width: 860px) {
+  .hero { height: 480px; }
+  .hero h1 { font-size: 38px; }
+  .hero-bottom { left: 24px; right: 24px; }
+  .progress .bar { width: 110px; }
+
+  .dest-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 300px 200px 200px; }
+  .dest-card.big { grid-column: span 2; grid-row: span 1; }
+
+  .pkg-grid { grid-template-columns: 1fr 1fr; }
+
+  .offer { height: auto; padding: 60px 0; }
+  .offer .big { font-size: 56px; }
+  .offer h2 { font-size: 32px; }
+
+  .about-grid { grid-template-columns: 1fr; }
+  .about-right > p { margin: 0 0 30px; }
+  .badge { left: 12px; bottom: -30px; }
+
+  .act-box { padding: 40px 0 30px 24px; }
+  .act-top { flex-direction: column; gap: 20px; padding-right: 24px; }
+  .act-tabs { display: flex; flex-wrap: wrap; gap: 16px; }
+  .act-bottom { grid-template-columns: 1fr; }
+  .act-info { padding-bottom: 0; }
+
+  .testi-wrap { --show: 2; }
+  .gallery { grid-template-rows: repeat(6, 40px); }
+}
+
+
+/* =================== phones =================== */
+@media (max-width: 560px) {
+  .testi-wrap { --show: 1; }
+  .hero-wrap { padding: 0 10px; }
+  .hero h1 { font-size: 30px; }
+
+  .pkg-grid { grid-template-columns: 1fr; }
+
+  .dest-grid { grid-template-columns: 1fr; grid-template-rows: 260px repeat(4, 180px); }
+  .dest-card.big { grid-column: span 1; }
+
+  /* gallery becomes a simple 2 column grid */
+  .gallery { grid-template-columns: 1fr 1fr; grid-template-rows: none; grid-auto-rows: 120px; }
+  .gallery img { grid-area: auto; }
+  .gallery .g1,
+  .gallery .g9 { grid-column: span 2; }
+}
+
+
+/* =================== view all testimonials and gallery =================== */
+/* every review in a grid instead of the moving belt */
+.testi-wrap.show-all { mask-image: none; }
+.testi-wrap.show-all .testi-track { flex-wrap: wrap; justify-content: center; }
+.testi-wrap.show-all .testi-card.fade { opacity: 1; scale: 1; }
+
