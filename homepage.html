@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ghumgham | Journey Beyond Limits</title>
+  <!-- font awesome for the icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="homepage.css">
+  <link rel="stylesheet" href="animations.css">
+</head>
+<body>
+
+
+
+  <!-- header comes from header.js -->
+  <div id="site-header"></div>
+
+
+  <!-- ========== hero banner ========== -->
+  <div class="hero-wrap">
+    <section class="hero">
+      <!-- hero photos, homepage.js fades to the next one every 4 seconds and counts them for the counter
+           only use big photos here (at least 1400px wide) or they look blurry, add more by copying a line -->
+      <img class="hero-slide active" src="images/hero-banner.jpg" alt="hero banner">
+      <img class="hero-slide" src="images/nepal-banner.jpg" alt="nepal banner">
+      <img class="hero-slide" src="images/hero-3.jpg" alt="hero 3">
+      <img class="hero-slide" src="images/hero-4.jpg" alt="hero 4">
+
+      <div class="hero-text">
+        <h1>Journey Beyond Limits,<br>Explore the <b>World.</b></h1>
+        <a href="destination.html" class="pill white-fill">
+          Explore Destinations
+          <span class="circle"><i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </div>
+
+      <div class="hero-bottom">
+        <div class="progress">
+          <div class="bar"><span id="heroBar"></span></div>
+          <div class="count"><span id="heroCount">01</span>/<small id="heroTotal">04</small></div>
+        </div>
+        <a href="#destinations" class="scroll">
+          <span class="circle"><i class="fa-solid fa-arrow-down"></i></span>
+          Scroll
+        </a>
+      </div>
+    </section>
+  </div>
+
+
+  <!-- ========== popular destinations ========== -->
+  <section id="destinations">
+    <div class="container">
+      <div class="head-row">
+        <div>
+          <span class="script">Popular</span>
+          <h2 class="title">Destinations to Travel<span class="dot">.</span></h2>
+        </div>
+        <p class="lead">From pristine beaches and bustling cities to serene mountain retreats and historical landmarks, there's something for every traveler. Let every journey inspire your wanderlust and leave you longing for more.</p>
+      </div>
+
+      <div class="dest-grid">
+        <!-- big card on the left -->
+        <a href="destination-detail.html?country=thailand" class="dest-card big">
+          <img src="images/thailand.jpg" alt="thailand">
+          <div class="shade"></div>
+          <div class="dest-info">
+            <div class="dest-name"><img class="flag" src="images/flags/th.svg" alt="thailand flag">Thailand</div>
+            <div class="dest-big-row">
+              <p>The land of natural resources</p>
+              <span class="link-under">View in Detail <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="destination-detail.html?country=nepal" class="dest-card">
+          <img src="images/nepal.jpg" alt="nepal">
+          <div class="shade"></div>
+          <div class="dest-info"><div class="dest-name"><img class="flag" src="images/flags/np.svg" alt="nepal flag">Nepal</div></div>
+        </a>
+
+        <a href="destination-detail.html?country=indonesia" class="dest-card">
+          <img src="images/indonesia.jpg" alt="indonesia">
+          <div class="shade"></div>
+          <div class="dest-info"><div class="dest-name"><img class="flag" src="images/flags/id.svg" alt="indonesia flag">Indonesia</div></div>
+        </a>
+
+        <a href="destination-detail.html?country=maldives" class="dest-card">
+          <img src="images/maldives.jpg" alt="maldives">
+          <div class="shade"></div>
+          <div class="dest-info"><div class="dest-name"><img class="flag" src="images/flags/mv.svg" alt="maldives flag">Maldives</div></div>
+        </a>
+
+        <!-- dark blue explore all card -->
+        <a href="destination.html" class="dest-card dest-explore">
+          <i class="fa-regular fa-compass compass"></i>
+          <h3>Explore all<br>Destinations</h3>
+          <p>Let every journey inspire and leave you longing for more.</p>
+          <span class="link-under">All Destinations <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========== hot packages ========== -->
+  <section class="bg-grey" id="packages">
+    <div class="container">
+      <div class="head-row">
+        <div>
+          <span class="script">Hot</span>
+          <h2 class="title">Packages made for you<span class="dot">.</span></h2>
+          <p class="lead wide">From pristine beaches and bustling cities to serene mountain retreats and historical landmarks, there's something for every traveler. Let every journey inspire your wanderlust and leave you longing for more.</p>
+        </div>
+        <a href="trips.html" class="pill">
+          View All Packages
+          <span class="circle"><i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </div>
+
+      <!-- 6 package cards, one trip from each country, links match the trip slugs in trip-data.js -->
+      <div class="pkg-grid">
+        <a href="trip-detail.html?trip=annapurna-wonderland" class="pkg-card">
+          <img src="images/annapurna-wonderland.jpg" alt="annapurna wonderland">
+          <div class="pkg-body">
+            <div class="stars">★★★★★ <span>(52)</span></div>
+            <h4>Annapurna Wonderland</h4>
+            <div class="meta"><i class="fa-solid fa-location-dot"></i>Nepal • 7D/6N</div>
+            <div class="pkg-price">Npr. 66,500 <small>per person</small></div>
+          </div>
+        </a>
+
+        <a href="trip-detail.html?trip=bangkok-and-pattaya-tour" class="pkg-card">
+          <img src="images/bangkok-and-pattaya-tour.jpg" alt="bangkok and pattaya tour">
+          <div class="pkg-body">
+            <div class="stars">★★★★★ <span>(48)</span></div>
+            <h4>Bangkok and Pattaya Tour</h4>
+            <div class="meta"><i class="fa-solid fa-location-dot"></i>Thailand • 5D/4N</div>
+            <div class="pkg-price">Npr. 47,500 <small>per person</small></div>
+          </div>
+        </a>
+
+        <a href="trip-detail.html?trip=bali-island-escape" class="pkg-card">
+          <img src="images/bali-island-escape.jpg" alt="bali island escape">
+          <div class="pkg-body">
+            <div class="stars">★★★★★ <span>(36)</span></div>
+            <h4>Bali Island Escape</h4>
+            <div class="meta"><i class="fa-solid fa-location-dot"></i>Indonesia • 6D/5N</div>
+            <div class="pkg-price">Npr. 57,000 <small>per person</small></div>
+          </div>
+        </a>
+
+        <a href="trip-detail.html?trip=maldives-honeymoon-escape" class="pkg-card">
+          <img src="images/maldives-honeymoon-escape.jpg" alt="maldives honeymoon escape">
+          <div class="pkg-body">
+            <div class="stars">★★★★★ <span>(29)</span></div>
+            <h4>Maldives Honeymoon Escape</h4>
+            <div class="meta"><i class="fa-solid fa-location-dot"></i>Maldives • 5D/4N</div>
+            <div class="pkg-price">Npr. 85,500 <small>per person</small></div>
+          </div>
+        </a>
+
+        <a href="trip-detail.html?trip=golden-triangle-tour" class="pkg-card">
+          <img src="images/golden-triangle-tour.jpg" alt="golden triangle tour">
+          <div class="pkg-body">
+            <div class="stars">★★★★★ <span>(41)</span></div>
+            <h4>Golden Triangle Tour</h4>
+            <div class="meta"><i class="fa-solid fa-location-dot"></i>India • 6D/5N</div>
+            <div class="pkg-price">Npr. 1,02,600 <small>per person</small></div>
+          </div>
+        </a>
+
+        <a href="trip-detail.html?trip=lhasa-city-tour" class="pkg-card">
+          <img src="images/lhasa-city-tour.jpg" alt="lhasa city tour">
+          <div class="pkg-body">
+            <div class="stars">★★★★★ <span>(23)</span></div>
+            <h4>Lhasa City Tour</h4>
+            <div class="meta"><i class="fa-solid fa-location-dot"></i>Tibet • 5D/4N</div>
+            <div class="pkg-price">Npr. 85,500 <small>per person</small></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========== 40% offer banner ========== -->
+  <section class="offer">
+    <img src="images/offer-travellers.jpg" alt="offer travellers">
+    <div class="container">
+      <span class="brush">Save upto</span>
+      <div class="big">40%</div>
+      <h2>Let's Explore the world</h2>
+      <a href="trips.html" class="pill white-line small">
+        View All Packages
+        <span class="circle"><i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </div>
+  </section>
+
+
+  <!-- ========== about us ========== -->
+  <section id="about">
+    <div class="container about-grid">
+      <div class="about-left">
+        <span class="script">About Us</span>
+        <h2 class="title">Embark on your journey to discover hidden gems.</h2>
+        <p>We transform your travel dreams into unforgettable realities. From serene beaches to bustling cities our tours cover. Discover hidden gems immerse yourself in unique cultures. Every journey is thoughtfully planned to create meaningful connections, effortless adventures, and memories you will treasure for years to come.</p>
+
+        <!-- the 3 feature boxes -->
+        <div class="feature">
+          <span class="icon"><i class="fa-solid fa-users"></i></span>
+          <div>
+            <h4>Family Vacation Deals</h4>
+            <p>Plan the perfect family escape with great packages and unforgettable experiences.</p>
+          </div>
+        </div>
+
+        <div class="feature">
+          <span class="icon"><i class="fa-solid fa-signs-post"></i></span>
+          <div>
+            <h4>Local Guide Assistance</h4>
+            <p>Enjoy world-class travel experiences without breaking your budget.</p>
+          </div>
+        </div>
+
+        <div class="feature">
+          <span class="icon"><i class="fa-solid fa-headset"></i></span>
+          <div>
+            <h4>24/7 Travel Support</h4>
+            <p>Enjoy world-class travel experiences without breaking your budget.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-right">
+        <p>From pristine beaches and bustling cities to serene mountain retreats and historical landmarks, there's something for every traveler. Let every journey inspire your wanderlust and leave you longing for more.</p>
+        <div class="about-img">
+          <img src="images/about-us.jpg" alt="about us">
+          <div class="badge">
+            <strong>10+</strong>
+            <small>Decade<br>of</small>
+            <span>Expertise</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========== blogs + activities box ========== -->
+  <section class="bg-grey" id="blogs">
+    <div class="container">
+      <div class="head-row">
+        <div>
+          <span class="script">Latest</span>
+          <h2 class="title">Insights &amp; Blogs</h2>
+        </div>
+        <p class="lead">From pristine beaches and bustling cities to serene mountain retreats and historical landmarks, there's something for every traveler. Let every journey inspire your wanderlust and leave you longing for more.</p>
+      </div>
+
+      <div class="blog-grid">
+        <a href="blog-detail.html?post=discover-hidden-gems-of-nepal-with-off-the-beaten-path-adventures" class="blog-card">
+          <img src="images/blog-1.jpg" alt="blog 1">
+          <div class="blog-body">
+            <h4>Discover Hidden Gems of Nepal with Off-the-Beaten-Path Adventures</h4>
+            <div class="blog-foot">
+              <span class="date"><i></i>17 Jan 2026</span>
+              <span class="read">Read Full Article <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="blog-detail.html?post=staying-in-overwater-villas-without-harming-the-reef" class="blog-card">
+          <img src="images/blog-2.jpg" alt="blog 2">
+          <div class="blog-body">
+            <h4>Staying in Overwater Villas Without Harming the Reef</h4>
+            <div class="blog-foot">
+              <span class="date"><i></i>30 Aug 2024</span>
+              <span class="read">Read Full Article <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="blog-detail.html?post=island-hopping-in-thailand-on-a-budget" class="blog-card">
+          <img src="images/blog-3.jpg" alt="blog 3">
+          <div class="blog-body">
+            <h4>Island Hopping in Thailand on a Budget</h4>
+            <div class="blog-foot">
+              <span class="date"><i></i>22 Sep 2025</span>
+              <span class="read">Read Full Article <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="center">
+        <a href="blogs.html" class="pill small">
+          View All Blogs
+          <span class="circle"><i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </div>
+
+      <!-- activities slider, the js file handles the tabs and arrows -->
+      <div class="act-box" id="activities">
+        <div class="act-top">
+          <div>
+            <span class="script">What Ghumgham Offers?</span>
+            <h2>Feel real adventure and very close to nature</h2>
+          </div>
+          <ul class="act-tabs" id="actTabs">
+            <li class="active">Trekking</li>
+            <li>Boating</li>
+            <li>Rafting</li>
+            <li>Sightseeing</li>
+          </ul>
+        </div>
+
+        <div class="act-bottom">
+          <div class="act-info">
+            <i class="fa-solid fa-person-hiking" id="actIcon"></i>
+            <h4 id="actTitle">Trekking</h4>
+            <p id="actText">Experience the Himalayas on foot, from peaceful mountain trails and ancient villages to spectacular high-altitude landscapes.</p>
+          </div>
+
+          <div>
+            <!-- one slide per tab -->
+            <div class="act-track">
+              <img class="act-slide active" src="images/trekking.jpg" alt="trekking">
+              <img class="act-slide" src="images/boating.jpg" alt="boating">
+              <img class="act-slide" src="images/rafting.jpg" alt="rafting">
+              <img class="act-slide" src="images/sightseeing.jpg" alt="sightseeing">
+            </div>
+            <div class="act-arrows">
+              <button class="fill" id="actPrev" aria-label="previous"><i class="fa-solid fa-arrow-left"></i></button>
+              <button id="actNext" aria-label="next"><i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========== testimonials ========== -->
+  <section>
+    <div class="container">
+      <div class="head-row">
+        <div>
+          <span class="script">Testimonials</span>
+          <h2 class="title">Latest Travel Stories &amp; Tips</h2>
+          <p class="lead wide">From quick getaways to grand adventures, travelers share stories of smooth bookings and unforgettable moments with Ghumgham.</p>
+        </div>
+        <button class="pill" id="allTestis">
+          <span>View All Testimonials</span>
+          <span class="circle"><i class="fa-solid fa-arrow-right"></i></span>
+        </button>
+      </div>
+
+      <!-- reviews slide along on their own, 5 on show, the middle 3 bright and the 2 on the sides faded (see homepage.js) -->
+      <div class="testi-wrap">
+      <div class="testi-track" id="testiTrack">
+      <div class="testi-card">
+        <p>Everything was perfectly arranged, from the guides to the scenic routes. It was the most breathtaking adventure I've ever experienced!</p>
+        <div class="wave"></div>
+        <img class="avatar" src="images/avatar-1.jpg" alt="avatar 1">
+        <div class="stars">★★★★★</div>
+        <h5>Daniel Ethamel</h5>
+        <small>United Kingdom</small>
+      </div>
+
+      <div class="testi-card">
+        <p>Ghumgham made the whole process effortless. Every moment in Bali felt magical, from the hidden waterfalls to the sunset dinners.</p>
+        <div class="wave"></div>
+        <img class="avatar" src="images/avatar-2.jpg" alt="avatar 2">
+        <div class="stars">★★★★★</div>
+        <h5>Priya Sharma</h5>
+        <small>Singapore</small>
+      </div>
+
+      <div class="testi-card">
+        <p>Our Phuket island hopping trip was fun from start to finish. The boats were always on time and the beaches were beautiful.</p>
+        <div class="wave"></div>
+        <img class="avatar" src="images/avatar-3.jpg" alt="avatar 3">
+        <div class="stars">★★★★★</div>
+        <h5>Anish Shrestha</h5>
+        <small>Nepal</small>
+      </div>
+
+      <div class="testi-card">
+        <p>The cultural tours in Lhasa were so well organized, and we got to see a side of Tibet we had never imagined. Truly a trip to remember.</p>
+        <div class="wave"></div>
+        <img class="avatar" src="images/avatar-4.jpg" alt="avatar 4">
+        <div class="stars">★★★★★</div>
+        <h5>Emma Clarke</h5>
+        <small>Australia</small>
+      </div>
+
+      <div class="testi-card">
+        <p>Ghumgham made our Bangkok and Pattaya holiday unforgettable. Everything, from the booking to the local tours, was seamless.</p>
+        <div class="wave"></div>
+        <img class="avatar" src="images/avatar-5.jpg" alt="avatar 5">
+        <div class="stars">★★★★★</div>
+        <h5>Kenji Tanaka</h5>
+        <small>Japan</small>
+      </div>
+
+      <div class="testi-card">
+        <p>Our Everest base camp trek was planned perfectly. The guide knew every trail and made sure we were safe and comfortable the whole way.</p>
+        <div class="wave"></div>
+        <img class="avatar" src="images/avatar-6.jpg" alt="avatar 6">
+        <div class="stars">★★★★★</div>
+        <h5>Sarah Wilson</h5>
+        <small>Canada</small>
+      </div>
+
+      <div class="testi-card">
+        <p>From the Maldives villa to the airport pickup, every detail was taken care of. We just relaxed and enjoyed our honeymoon.</p>
+        <div class="wave"></div>
+        <img class="avatar" src="images/avatar-7.jpg" alt="avatar 7">
+        <div class="stars">★★★★★</div>
+        <h5>Rohan Mehta</h5>
+        <small>India</small>
+      </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="rating">
+      <span class="stars">★★★★★</span>
+      <strong>4.9/5</strong>
+      <span>(1.5K+ Reviews)</span>
+    </div>
+  </section>
+
+
+  <!-- ========== gallery ========== -->
+  <section>
+    <div class="container">
+      <div class="head-row">
+        <div>
+          <span class="script">Gallery</span>
+          <h2 class="title">Discover the World in Frames</h2>
+        </div>
+        <p class="lead">From pristine beaches and bustling cities to serene mountain retreats and historical landmarks, there's something for every traveler. Let every journey inspire your wanderlust and leave you longing for more.</p>
+      </div>
+
+      <!-- g1 to g9 are placed in the css, look for .g1 .g2 etc -->
+      <div class="gallery">
+        <img class="g1" src="images/gallery-1.jpg" alt="gallery 1">
+        <img class="g2" src="images/gallery-2.jpg" alt="gallery 2">
+        <img class="g3" src="images/gallery-3.jpg" alt="gallery 3">
+        <img class="g4" src="images/gallery-4.jpg" alt="gallery 4">
+        <img class="g5" src="images/gallery-5.jpg" alt="gallery 5">
+        <img class="g6" src="images/gallery-6.jpg" alt="gallery 6">
+        <img class="g7" src="images/gallery-7.jpg" alt="gallery 7">
+        <img class="g8" src="images/gallery-8.jpg" alt="gallery 8">
+        <img class="g9" src="images/gallery-9.jpg" alt="gallery 9">
+      </div>
+
+      <div class="center">
+        <button class="pill small" id="allGallery">
+          View All Gallery
+          <span class="circle"><i class="fa-solid fa-arrow-right"></i></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========== faq ========== -->
+  <section class="bg-grey" id="contact">
+    <div class="container faq-grid">
+      <div class="faq-left">
+        <span class="script">Frequently</span>
+        <h2 class="title">Asked Questions<span class="dot">.</span></h2>
+        <p class="lead">Explore the most common questions and answers to help you plan a safe and unforgettable trekking adventure in Nepal.</p>
+        <p class="sub">Couldn't find what you're looking for? No worries! Feel free to reach out for any inquiries.</p>
+        <a href="contact.html" class="link-under">Contact us now <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div>
+        <!-- add "open" to a faq-item if you want it open when the page loads -->
+        <div class="faq-item open">
+          <button class="faq-q">What is the best time to trek in Nepal? <i class="fa-solid fa-chevron-down"></i></button>
+          <div class="faq-a"><p>The best time to trek in Nepal is during the spring (March to May) and autumn (September to November) seasons, when the weather is clear and stable, offering excellent views.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">Do I need a permit for trekking in Nepal? <i class="fa-solid fa-chevron-down"></i></button>
+          <div class="faq-a"><p>Yes. Most trekking areas need a TIMS card and a national park or conservation area permit. We arrange all permits for you.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">What are the fitness requirements for trekking in Nepal? <i class="fa-solid fa-chevron-down"></i></button>
+          <div class="faq-a"><p>A basic level of fitness is enough for most treks. Regular walking or light cardio for a few weeks before the trip helps a lot.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">Are guides or porters necessary for trekking? <i class="fa-solid fa-chevron-down"></i></button>
+          <div class="faq-a"><p>Guides are required in many regions and make the trek safer and easier. Porters are optional but recommended for longer treks.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">What should I pack for trekking in Nepal? <i class="fa-solid fa-chevron-down"></i></button>
+          <div class="faq-a"><p>Layered clothing, good trekking boots, a warm jacket, sleeping bag, water bottle, sunscreen and a basic first aid kit.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">Is altitude sickness common during trekking? <i class="fa-solid fa-chevron-down"></i></button>
+          <div class="faq-a"><p>It can happen above 2,500 m. Our itineraries include acclimatisation days and guides are trained to spot the early signs.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">What accommodation options are available on trekking routes? <i class="fa-solid fa-chevron-down"></i></button>
+          <div class="faq-a"><p>Most routes have teahouses and lodges with simple rooms and meals. Camping is available on remote routes.</p></div>
+        </div>
+
+        <button class="pill plain faq-more">Load More</button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- photo viewer for the gallery, opened by a photo or by view all gallery (see homepage.js) -->
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="modal-close" aria-label="close"><i class="fa-solid fa-xmark"></i></button>
+    <button class="lb-arrow prev" id="lbPrev" aria-label="previous photo"><i class="fa-solid fa-chevron-left"></i></button>
+    <img id="lbImg" src="" alt="">
+    <button class="lb-arrow next" id="lbNext" aria-label="next photo"><i class="fa-solid fa-chevron-right"></i></button>
+    <p class="lb-count" id="lbCount"></p>
+  </div>
+
+  <!-- footer comes from footer.js -->
+  <div id="site-footer"></div>
+
+  <script src="header.js"></script>
+  <script src="footer.js"></script>
+  <script src="common.js"></script>
+  <script src="homepage.js"></script>
+  <!-- animations for every page, keep this last -->
+  <script src="animations.js"></script>
+</body>
+</html>
