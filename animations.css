@@ -1,0 +1,346 @@
+/* animations for every ghumgham page
+   loaded last on each page so it sits on top of the page styles
+   the scroll reveals, word by word headings, parallax, tilt and ripple are started by animations.js
+   everything here is turned off for people who ask their device for less motion (bottom of file) */
+
+
+/* =================== page loader =================== */
+/* white cover with the pulsing logo, fades out on its own after a moment */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  background: var(--white);
+  pointer-events: none;
+  animation: loaderOut 0.45s ease 0.75s forwards;
+}
+
+/* the logo is split in two so the red g can spin like it does on the logo in the header:
+   html::after is the g and body::after is the navy name, both placed from the middle of the screen
+   (the g box is 1em wide, then a small gap, then the name, together about 6.6em, so each starts 3.3em left of centre) */
+html::after,
+body::after {
+  position: fixed;
+  top: 50%;
+  z-index: 5001;
+  font: 800 48px var(--font);
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+  translate: 0 -50%;
+}
+
+html::after {
+  content: "G";
+  left: calc(50% - 3.3em);
+  width: 1em;
+  text-align: center;
+  color: var(--red);
+  animation: loaderSpin 0.75s ease-in-out, loaderOut 0.45s ease 0.75s forwards;
+}
+
+body::after {
+  content: "ghumgham";
+  left: calc(50% - 2.1em);
+  letter-spacing: -0.5px;
+  color: var(--navy);
+  animation: loaderRise 0.5s ease-out, loaderOut 0.45s ease 0.75s forwards;
+}
+
+@keyframes loaderSpin { from { rotate: -360deg; } }
+@keyframes loaderRise { from { opacity: 0; translate: 0 calc(-50% + 10px); } }
+
+@keyframes loaderOut { to { opacity: 0; visibility: hidden; } }
+
+/* fade out when going to another page (animations.js adds .leaving) */
+body { transition: opacity 0.28s ease; }
+body.leaving { opacity: 0; }
+
+
+/* =================== scroll progress bar and back to top =================== */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1100;
+  height: 3px;
+  background: linear-gradient(90deg, var(--red), #ff8a93);
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+}
+
+.to-top {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 900;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: var(--red);
+  color: var(--white);
+  box-shadow: 0 8px 20px rgba(229, 57, 69, 0.35);
+  cursor: pointer;
+  opacity: 0;
+  translate: 0 20px;
+  pointer-events: none;
+  transition: opacity 0.3s, translate 0.3s, background 0.3s;
+}
+
+.to-top.show { opacity: 1; translate: 0 0; pointer-events: auto; }
+.to-top:hover { background: var(--navy-box); translate: 0 -4px; }
+
+
+/* =================== header =================== */
+/* slides down after the loader */
+.header { animation: slideDown 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) 0.55s backwards; }
+@keyframes slideDown { from { translate: 0 -100%; } }
+
+/* red line grows under the menu links */
+.menu > li > a { position: relative; }
+
+.menu > li > a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 18px;
+  width: 100%;
+  height: 2px;
+  background: var(--red);
+  scale: 0 1;
+  transform-origin: left;
+  transition: scale 0.3s ease;
+}
+
+.menu > li > a:hover::after { scale: 1 1; }
+
+/* logo g spins on hover */
+.logo .g { display: inline-block; transition: rotate 0.6s ease; }
+.logo:hover .g { rotate: 360deg; }
+
+/* ring around the phone icon */
+.call .icon { position: relative; }
+
+.call .icon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--red);
+  border-radius: 50%;
+  animation: ring 1.8s ease-out infinite;
+  pointer-events: none;
+}
+
+
+@keyframes ring { from { scale: 1; opacity: 0.7; } to { scale: 1.8; opacity: 0; } }
+
+/* destination dropdown: cards come in one after another */
+@media (min-width: 861px) {
+  .mega-card,
+  .mega-regions li { opacity: 0; translate: 0 10px; transition: opacity 0.35s, translate 0.35s; }
+
+  .has-mega:hover .mega-card,
+  .has-mega:hover .mega-regions li { opacity: 1; translate: 0 0; }
+
+  .mega-regions li:nth-child(2), .mega-card:nth-child(2) { transition-delay: 0.05s; }
+  .mega-regions li:nth-child(3), .mega-card:nth-child(3) { transition-delay: 0.1s; }
+  .mega-regions li:nth-child(4), .mega-card:nth-child(4) { transition-delay: 0.15s; }
+  .mega-regions li:nth-child(5), .mega-card:nth-child(5) { transition-delay: 0.2s; }
+  .mega-card:nth-child(6) { transition-delay: 0.25s; }
+  .mega-card:nth-child(7) { transition-delay: 0.3s; }
+  .mega-card:nth-child(8) { transition-delay: 0.35s; }
+}
+
+
+/* =================== scroll reveals =================== */
+/* animations.js puts data-anim on elements, they stay hidden until they scroll into view */
+.anim-on [data-anim] {
+  transition:
+    opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+    translate 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+    scale 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+    clip-path 1s ease;
+  transition-delay: var(--d, 0s);
+}
+
+.anim-on [data-anim="up"]:not(.is-in) { opacity: 0; translate: 0 40px; }
+.anim-on [data-anim="left"]:not(.is-in) { opacity: 0; translate: -50px 0; }
+.anim-on [data-anim="right"]:not(.is-in) { opacity: 0; translate: 50px 0; }
+.anim-on [data-anim="zoom"]:not(.is-in) { opacity: 0; scale: 0.9; }
+.anim-on [data-anim="fade"]:not(.is-in) { opacity: 0; }
+
+/* handwritten labels write themselves from left to right */
+.anim-on [data-anim="write"]:not(.is-in) { clip-path: inset(0 100% 0 0); }
+.anim-on [data-anim="write"].is-in { clip-path: inset(0 -20% 0 0); }
+
+/* cards added later (filters, load more, reviews) pop in */
+.pop-in {
+  animation: popIn 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: calc(var(--pi, 0) * 60ms);
+}
+
+@keyframes popIn { from { opacity: 0; translate: 0 18px; } }
+
+
+/* =================== big headings, word by word =================== */
+.split .word {
+  display: inline-block;
+  animation: wordUp 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: calc(0.75s + var(--i) * 70ms);
+}
+
+@keyframes wordUp { from { opacity: 0; translate: 0 0.5em; filter: blur(4px); } }
+
+
+/* =================== homepage hero =================== */
+/* the photo slowly zooms in and out */
+.hero { overflow: hidden; }
+.hero > img { scale: 1.08; animation: kenBurns 18s ease-in-out infinite alternate; }
+@keyframes kenBurns { from { scale: 1.08; } to { scale: 1.13; } }
+
+.hero .pill { animation: riseIn 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 1.3s both; }
+.hero-bottom { animation: fadeIn 1s ease 1.6s both; }
+
+@keyframes riseIn { from { opacity: 0; translate: 0 30px; } }
+@keyframes fadeIn { from { opacity: 0; } }
+
+/* how it works photo is a bit bigger so it can move with the scroll */
+.steps-bg { scale: 1.15; }
+
+
+/* =================== little moving details =================== */
+/* red full stop on headings bounces */
+.title .dot { display: inline-block; animation: dotBounce 2s ease-in-out infinite; }
+@keyframes dotBounce { 0%, 60%, 100% { translate: 0 0; } 30% { translate: 0 -6px; } }
+
+/* homepage 10+ badge floats, 40% offer beats */
+.badge { animation: float 4s ease-in-out infinite; }
+@keyframes float { 50% { translate: 0 -12px; } }
+
+.offer .big { animation: heartbeat 2.4s ease-in-out infinite; }
+@keyframes heartbeat { 0%, 40%, 100% { scale: 1; } 20% { scale: 1.06; } }
+
+/* flash icon on the popular badge, whatsapp icon wiggles */
+.popular i { animation: blink 1.4s ease-in-out infinite; }
+@keyframes blink { 50% { opacity: 0.3; } }
+
+.whatsapp i { display: inline-block; animation: wiggle 3s ease-in-out infinite; }
+@keyframes wiggle { 0%, 80%, 100% { rotate: 0deg; } 85% { rotate: -14deg; } 90% { rotate: 12deg; } 95% { rotate: -6deg; } }
+
+/* open itinerary days get a soft pulse on their icon */
+.day.open .day-icon { animation: softPulse 2s ease-out infinite; }
+@keyframes softPulse { from { box-shadow: 0 0 0 0 rgba(229, 57, 69, 0.5); } to { box-shadow: 0 0 0 12px rgba(229, 57, 69, 0); } }
+
+
+/* =================== hover effects =================== */
+/* photos zoom a little inside their cards */
+.pkg-card img,
+.blog-card img,
+.act-card img,
+.place-card > img,
+.dest-card > img { transition: scale 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
+
+.pkg-card:hover img,
+.blog-card:hover img,
+.act-card:hover img,
+.place-card:hover > img,
+.dest-card:hover > img { scale: 1.08; }
+
+/* cards that tilt towards the mouse (see animations.js) */
+.dest-card,
+.place-card,
+.region-card,
+.step-card { transition: transform 0.25s ease, box-shadow 0.3s ease; }
+
+.step-card:hover { box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2); }
+
+/* shine that sweeps across buttons */
+.book-btn,
+.pill { position: relative; overflow: hidden; }
+
+.book-btn::after,
+.pill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.book-btn:hover::after,
+.pill:hover::after { left: 130%; }
+
+/* ripple where a button is clicked */
+.ripple-host { position: relative; overflow: hidden; }
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  scale: 0;
+  pointer-events: none;
+  animation: ripple 0.6s ease-out forwards;
+}
+
+.pill:not(.white-line) .ripple,
+.outline-btn .ripple,
+.small-book .ripple,
+.round-btn .ripple { background: rgba(229, 57, 69, 0.25); }
+
+@keyframes ripple { to { scale: 1; opacity: 0; } }
+
+
+/* =================== things that open =================== */
+.acc-item.open .acc-body,
+.day.open .day-body,
+.filter-group.open .filter-body,
+.calendar:not([hidden]) { animation: dropIn 0.3s ease; }
+
+@keyframes dropIn { from { opacity: 0; translate: 0 -8px; } }
+
+.modal:not([hidden]),
+.lightbox:not([hidden]) { animation: fadeIn 0.25s ease; }
+
+.modal:not([hidden]) .modal-box,
+.lightbox:not([hidden]) img { animation: modalIn 0.35s cubic-bezier(0.2, 0.7, 0.2, 1); }
+
+@keyframes modalIn { from { opacity: 0; scale: 0.92; translate: 0 20px; } }
+
+
+/* =================== small screens =================== */
+@media (max-width: 860px) {
+  .menu > li > a::after { bottom: 6px; }
+}
+
+
+/* =================== less motion =================== */
+/* people who turn on "reduce motion" on their device get a calm page */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* =================== print =================== */
+@media print {
+  html::after,
+  body::before,
+  body::after,
+  .scroll-progress,
+  .to-top { display: none !important; }
+}
