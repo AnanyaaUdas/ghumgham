@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Destinations | Ghumgham</title>
+  <!-- font awesome for the icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="destination.css">
+  <link rel="stylesheet" href="animations.css">
+</head>
+<body class="destination-page">
+
+  <!-- header comes from header.js -->
+  <div id="site-header"></div>
+
+
+  <!-- ========== page intro ========== -->
+  <section class="intro">
+    <div class="container">
+      <span class="script">Destinations</span>
+      <h1>Discover <b>Perfect Destinations</b><br>for Your Journey.</h1>
+
+      <!-- text is cut to 3 lines, read more opens the rest (see common.js) -->
+      <p class="intro-text" id="introText">Embark on a journey to explore destinations perfectly suited for your travel aspirations. Whether you're seeking thrilling adventures, serene getaways, or rich cultural experiences, there's a world of possibilities waiting for you. Discover breathtaking landscapes, vibrant cities, and hidden gems that promise unforgettable memories and stories to cherish forever. Whether you seek adventure, relaxation, or cultural discovery, every destination has something special to offer, and our team is here to help you plan the perfect trip from start to finish.</p>
+      <button class="read-more" id="readMore">Read More</button>
+    </div>
+  </section>
+
+
+  <!-- ========== destination cards ========== -->
+  <section class="places">
+    <div class="container">
+      <!-- 9 cards, change the photo, flag and name in each one -->
+      <div class="place-grid">
+        <a href="destination-detail.html?country=thailand" class="place-card">
+          <img src="images/thailand.jpg" alt="thailand">
+          <div class="place-body">
+            <h3><img class="flag" src="images/flags/th.svg" alt="thailand flag">Thailand</h3>
+            <p>The land of natural resources</p>
+          </div>
+        </a>
+
+        <a href="destination-detail.html?country=nepal" class="place-card">
+          <img src="images/nepal.jpg" alt="nepal">
+          <div class="place-body">
+            <h3><img class="flag" src="images/flags/np.svg" alt="nepal flag">Nepal</h3>
+            <p>The land of natural resources</p>
+          </div>
+        </a>
+
+        <a href="destination-detail.html?country=indonesia" class="place-card">
+          <img src="images/indonesia.jpg" alt="indonesia">
+          <div class="place-body">
+            <h3><img class="flag" src="images/flags/id.svg" alt="indonesia flag">Indonesia</h3>
+            <p>The land of natural resources</p>
+          </div>
+        </a>
+
+        <a href="destination-detail.html?country=maldives" class="place-card">
+          <img src="images/maldives.jpg" alt="maldives">
+          <div class="place-body">
+            <h3><img class="flag" src="images/flags/mv.svg" alt="maldives flag">Maldives</h3>
+            <p>The land of natural resources</p>
+          </div>
+        </a>
+
+        <a href="destination-detail.html?country=tibet" class="place-card">
+          <img src="images/tibet.jpg" alt="tibet">
+          <div class="place-body">
+            <h3><img class="flag" src="images/flags/tb.svg" alt="tibet flag">Tibet</h3>
+            <p>The land of natural resources</p>
+          </div>
+        </a>
+
+        <a href="destination-detail.html?country=india" class="place-card">
+          <img src="images/india.jpg" alt="india">
+          <div class="place-body">
+            <h3><img class="flag" src="images/flags/in.svg" alt="india flag">India</h3>
+            <p>The land of natural resources</p>
+          </div>
+        </a>
+
+        <a href="destination-detail.html?country=indonesia" class="place-card">
+          <img src="images/indonesia-2.jpg" alt="indonesia 2">
+          <div class="place-body">
+            <h3><img class="flag" src="images/flags/id.svg" alt="indonesia flag">Indonesia</h3>
+            <p>The land of natural resources</p>
+          </div>
+        </a>
+
+        <a href="destination-detail.html?country=nepal" class="place-card">
+          <img src="images/nepal-2.jpg" alt="nepal 2">
+          <div class="place-body">
+            <h3><img class="flag" src="images/flags/np.svg" alt="nepal flag">Nepal</h3>
+            <p>The land of natural resources</p>
+          </div>
+        </a>
+
+        <a href="destination-detail.html?country=thailand" class="place-card">
+          <img src="images/thailand-2.jpg" alt="thailand 2">
+          <div class="place-body">
+            <h3><img class="flag" src="images/flags/th.svg" alt="thailand flag">Thailand</h3>
+            <p>The land of natural resources</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- footer comes from footer.js -->
+  <div id="site-footer"></div>
+
+  <script src="header.js"></script>
+  <script src="footer.js"></script>
+  <script src="common.js"></script>
+  <!-- animations for every page, keep this last -->
+  <script src="animations.js"></script>
+</body>
+</html>

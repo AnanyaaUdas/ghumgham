@@ -1,0 +1,54 @@
+/* destination listing page styles for ghumgham
+   shared stuff (header, footer, flags, buttons) is in common.css */
+
+
+/* light grey page with a soft pink glow at the top right */
+.destination-page {
+  background:
+    radial-gradient(circle at 95% 0%, rgba(229, 57, 69, 0.08), transparent 35%),
+    #f3f3f7;
+}
+
+
+
+/* =================== destination cards =================== */
+.places { padding: 0 0 130px; }
+
+.place-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+.place-card {
+  overflow: hidden;
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.place-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08); }
+
+.place-card > img { height: 300px; }
+
+.place-body { padding: 18px 24px 22px; }
+
+.place-body h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.place-body p { font-size: 13px; }
+
+
+/* =================== tablets and phones =================== */
+@media (max-width: 860px) {
+  .place-grid { grid-template-columns: 1fr 1fr; }
+  .place-card > img { height: 240px; }
+  .places { padding-bottom: 70px; }
+}
+
+@media (max-width: 560px) {
+  .place-grid { grid-template-columns: 1fr; }
+}
