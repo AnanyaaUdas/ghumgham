@@ -1,0 +1,41 @@
+/* region detail page styles for ghumgham (one template for every region)
+   shared stuff (header, footer, intro, package listing, faq, blog and region cards, photo box) is in common.css */
+
+
+/* =================== intro with photo =================== */
+/* white fading into light grey, with a soft pink glow at the top right */
+.region-intro {
+  padding-bottom: 70px;
+  background:
+    radial-gradient(circle at 95% 0%, rgba(229, 57, 69, 0.07), transparent 30%),
+    linear-gradient(var(--white), #f3f3f7);
+}
+
+.region-intro-grid {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.region-intro h1 b { display: block; } /* region name drops to its own line */
+
+.region-intro .photo-box img { height: 420px; }
+
+
+/* =================== blogs and more regions =================== */
+/* thin line between the faq and the blogs, both sit on grey */
+.blogs { padding-top: 0; }
+.blogs .container { padding-top: 60px; border-top: 1px solid #dcdce2; }
+.blogs .blog-grid { margin-top: 30px; }
+
+#moreRegions { margin-top: 30px; }
+
+
+/* =================== small tablets and big phones =================== */
+@media (max-width: 860px) {
+  .region-intro-grid { grid-template-columns: 1fr; }
+
+  .region-intro .photo-box img { height: 300px; }
+}
+

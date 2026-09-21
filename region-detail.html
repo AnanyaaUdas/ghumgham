@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Region | Ghumgham</title>
+  <!-- font awesome for the icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="region-detail.css">
+  <link rel="stylesheet" href="animations.css">
+</head>
+<body>
+
+  <!-- this page is a template for every region
+       the activity and region come from the link, e.g. region-detail.html?activity=trekking&region=annapurna-region
+       the content comes from activity-data.js and region-data.js, region-detail.js puts it in place -->
+
+  <!-- header comes from header.js -->
+  <div id="site-header"></div>
+
+
+  <!-- ========== intro with photo ========== -->
+  <section class="intro region-intro">
+    <div class="container region-intro-grid">
+      <div>
+        <span class="script" data-fill="name"></span>
+        <h1>Discover the Hidden Wonders of <b data-fill="name"></b></h1>
+
+        <!-- text is cut to 3 lines, read more opens the rest (see common.js) -->
+        <p class="intro-text" id="introText" data-fill="intro"></p>
+        <button class="read-more" id="readMore">Read More</button>
+      </div>
+
+      <!-- photo next to the text, set by the page script -->
+      <div class="photo-box">
+        <img id="aboutImg" src="" alt="">
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========== packages with filters ========== -->
+  <section>
+    <div class="container">
+      <span class="script">All</span>
+      <h2 class="title"><span data-fill="name"></span> <span data-fill="activityName"></span> Packages<span class="dot">.</span></h2>
+      <p class="lead wide">From pristine beaches and bustling cities to serene mountain retreats and historical landmarks, there's something for every traveler. Let every journey inspire your wanderlust and leave you longing for more.</p>
+
+      <!-- filters and results come from listing.js -->
+      <div id="package-listing"></div>
+    </div>
+  </section>
+
+
+  <!-- ========== faq ========== -->
+  <section class="bg-grey">
+    <div class="container faq-grid">
+      <div class="faq-left">
+        <span class="script">Frequently</span>
+        <h2 class="title">Asked Questions<span class="dot">.</span></h2>
+        <p class="lead">Explore the most common questions and answers to help you plan a safe and unforgettable <span data-fill="activityLower"></span> adventure in Nepal.</p>
+        <p class="sub">Couldn't find what you're looking for? No worries! Feel free to reach out for any inquiries.</p>
+        <a href="contact.html" class="link-under">Contact us now <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div>
+        <!-- questions come from the activity in activity-data.js, the first one starts open -->
+        <div id="faqList"></div>
+        <button class="pill plain faq-more">Load More</button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========== blogs ========== -->
+  <section class="bg-grey blogs">
+    <div class="container">
+      <span class="script">Latest</span>
+      <h2 class="title">Insights from <span data-fill="name"></span></h2>
+      <p class="lead wide">From pristine beaches and bustling cities to serene mountain retreats and historical landmarks, there's something for every traveler. Let every journey inspire your wanderlust and leave you longing for more.</p>
+
+      <!-- blog cards are added here by region-detail.js -->
+      <div class="blog-grid" id="blogGrid"></div>
+    </div>
+  </section>
+
+
+  <!-- ========== more regions ========== -->
+  <section>
+    <div class="container">
+      <span class="script">More</span>
+      <h2 class="title">Regions you might like<span class="dot">.</span></h2>
+
+      <!-- 4 other regions of the same activity are added here by region-detail.js -->
+      <div class="region-grid" id="moreRegions"></div>
+    </div>
+  </section>
+
+
+  <!-- footer comes from footer.js -->
+  <div id="site-footer"></div>
+
+  <script src="header.js"></script>
+  <script src="footer.js"></script>
+  <script src="common.js"></script>
+  <script src="activity-data.js"></script>
+  <script src="region-data.js"></script>
+  <script src="listing.js"></script>
+  <script src="region-detail.js"></script>
+  <!-- animations for every page, keep this last -->
+  <script src="animations.js"></script>
+</body>
+</html>
