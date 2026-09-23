@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Activity | Ghumgham</title>
+  <!-- font awesome for the icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="activity-detail.css">
+  <link rel="stylesheet" href="animations.css">
+</head>
+<body class="activity-page">
+
+  <!-- this page is a template for every activity
+       the activity comes from the link, e.g. activity-detail.html?activity=rafting
+       the content comes from activity-data.js and activity-detail.js puts it in place -->
+
+  <!-- header comes from header.js -->
+  <div id="site-header"></div>
+
+
+  <!-- ========== intro and regions ========== -->
+  <section class="intro">
+    <div class="container">
+      <span class="script" data-fill="name"></span>
+      <h1><span data-fill="titleStart"></span> <b data-fill="titleBold"></b></h1>
+
+      <!-- text is cut to 3 lines, read more opens the rest ( common.js) -->
+      <p class="intro-text" id="introText" data-fill="intro"></p>
+      <button class="read-more" id="readMore">Read More</button>
+
+      <!-- region cards are added here by activity-detail.js -->
+      <div class="region-grid" id="regionGrid"></div>
+    </div>
+  </section>
+
+
+  <!-- ========== about the activity ========== -->
+  <section class="about-section">
+    <div class="container about-split reverse">
+      <!-- photo next to the text, set by the page script -->
+      <div class="photo-box">
+        <img id="aboutImg" src="" alt="">
+      </div>
+
+      <div>
+        <span class="script">Know more</span>
+        <h2 class="title">About <span data-fill="aboutTitle"></span><span class="dot">.</span></h2>
+        <p class="about-text" data-fill="about"></p>
+
+        <h4 data-fill="reasonsTitle"></h4>
+        <!-- reasons are added here by activity-detail.js -->
+        <ul class="reasons" id="reasons"></ul>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========== packages slider ========== -->
+  <section>
+    <div class="container">
+      <div class="head-row">
+        <div>
+          <span class="script">Popular</span>
+          <h2 class="title"><span data-fill="name"></span> Packages<span class="dot">.</span></h2>
+          <p class="lead wide">From pristine beaches and bustling cities to serene mountain retreats and historical landmarks, there's something for every traveler. Let every journey inspire your wanderlust and leave you longing for more.</p>
+        </div>
+
+        <div class="slider-controls">
+          <a href="trips.html" class="pill plain">View All Packages</a>
+          <button class="round-btn" id="pkgPrev" aria-label="previous"><i class="fa-solid fa-arrow-left"></i></button>
+          <button class="round-btn" id="pkgNext" aria-label="next"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- package cards are added here by activity-detail.js
+         the slider is outside the container so the cards run off the right edge -->
+    <div class="pkg-slider" id="pkgSlider"></div>
+  </section>
+
+
+  <!-- ========== faq ========== -->
+  <section class="bg-grey">
+    <div class="container faq-grid">
+      <div class="faq-left">
+        <span class="script">Frequently</span>
+        <h2 class="title">Asked Questions<span class="dot">.</span></h2>
+        <p class="lead">Explore the most common questions and answers to help you plan a safe and unforgettable <span data-fill="nameLower"></span> adventure in Nepal.</p>
+        <p class="sub">Couldn't find what you're looking for? No worries! Feel free to reach out for any inquiries.</p>
+        <a href="contact.html" class="link-under">Contact us now <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div>
+        <!-- questions are added here by activity-detail.js, the first one starts open -->
+        <div id="faqList"></div>
+        <button class="pill plain faq-more">Load More</button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========== more activities ========== -->
+  <section>
+    <div class="container">
+      <span class="script">More</span>
+      <h2 class="title">Activities you might like<span class="dot">.</span></h2>
+
+      <!-- 4 other activities are added here by activity-detail.js -->
+      <div class="act-grid" id="moreActivities"></div>
+    </div>
+  </section>
+
+
+  <!-- footer comes from footer.js -->
+  <div id="site-footer"></div>
+
+  <script src="header.js"></script>
+  <script src="footer.js"></script>
+  <script src="common.js"></script>
+  <script src="activity-data.js"></script>
+  <script src="activity-detail.js"></script>
+  <!-- animations for every page, keep this last -->
+  <script src="animations.js"></script>
+</body>
+</html>

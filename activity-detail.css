@@ -1,0 +1,19 @@
+/* activity detail page styles for ghumgham (one template for every activity)
+   shared stuff (header, footer, intro, slider, about block, faq, activity and region cards) is in common.css */
+
+
+/* =================== intro and about background =================== */
+/* white fading into light grey, with a soft pink glow at the top right */
+.activity-page .intro {
+  padding-bottom: 80px;
+  background:
+    radial-gradient(circle at 95% 0%, rgba(229, 57, 69, 0.07), transparent 30%),
+    linear-gradient(var(--white), #f3f3f7 60%);
+}
+
+.about-section { padding-top: 0; background: #f3f3f7; }
+
+
+/* =================== more activities =================== */
+#moreActivities { margin-top: 30px; }
+
