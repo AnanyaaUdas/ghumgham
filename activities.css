@@ -1,0 +1,26 @@
+/* activities listing page styles for ghumgham
+   shared stuff (header, footer, intro, breadcrumb, activity cards) is in common.css */
+
+
+/* =================== intro =================== */
+/* breadcrumb sits right under the header on this page */
+.intro { padding-top: 0; }
+
+/* extra space between the breadcrumb and the heading */
+.intro .breadcrumb + .script { margin-top: 64px; }
+
+
+/* =================== activity cards =================== */
+.activities { padding: 0 0 60px; }
+
+/* the cards sit on white here, so a slightly stronger shadow */
+.activities .act-card { box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07); }
+
+.activities .act-grid { margin-top: 0; }
+
+
+
+/* =================== phones =================== */
+@media (max-width: 560px) {
+  .intro .breadcrumb + .script { margin-top: 36px; }
+}
