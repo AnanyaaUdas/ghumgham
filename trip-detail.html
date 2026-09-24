@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trip | Ghumgham</title>
+  <!-- font awesome for the icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="trip-detail.css">
+  <link rel="stylesheet" href="animations.css">
+</head>
+<body class="trip-page">
+
+  <!-- this page is a template for every trip
+       the trip comes from the link, e.g. trip-detail.html?trip=wonders-of-bangkok
+       the content comes from trip-data.js and trip-detail.js puts it in place -->
+
+  <!-- header comes from header.js -->
+  <div id="site-header"></div>
+
+
+  <!-- ========== title, rating and photos ========== -->
+  <section class="trip-top">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="homepage.html">Home</a>
+        <i></i>
+        <a id="crumbPlace" href="destination.html"></a>
+        <i></i>
+        <span data-fill="title"></span>
+      </nav>
+
+      <h1 class="trip-title" id="tripTitle"></h1>
+
+      <div class="trip-meta">
+        <span><i class="fa-solid fa-location-dot"></i><span data-fill="location"></span></span>
+        <span><i class="fa-solid fa-calendar-days"></i><span data-fill="durationText"></span></span>
+        <span><i class="fa-solid fa-user-group"></i>Min <span data-fill="min"></span> <em>·</em> Max <span data-fill="max"></span></span>
+      </div>
+
+      <div class="trip-bar">
+        <!-- stars and review count, filled by trip-detail.js -->
+        <div class="trip-rating" id="topRating"></div>
+
+        <div class="trip-actions">
+          <button id="shareBtn"><i class="fa-solid fa-share-nodes"></i><span>Share</span></button>
+          <button id="likeBtn"><i class="fa-regular fa-heart"></i><span>Like</span></button>
+          <button id="pdfBtn"><i class="fa-regular fa-file-pdf"></i><span>Download PDF</span></button>
+        </div>
+      </div>
+
+      <!-- 6 photos, the last one opens all photos (see the lightbox at the bottom) -->
+      <div class="trip-gallery" id="tripGallery"></div>
+    </div>
+  </section>
+
+
+  <!-- ========== tabs that jump to each section ========== -->
+  <nav class="trip-tabs" id="tripTabs">
+    <div class="container">
+      <a href="#overview" class="active">Overview</a>
+      <a href="#itinerary">Itinerary</a>
+      <a href="#highlights">Highlights</a>
+      <a href="#inclusions">Inclusions</a>
+      <a href="#tour-map">Tour Map</a>
+      <a href="#departures">Departures</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#faqs">FAQs</a>
+    </div>
+  </nav>
+
+
+  <!-- ========== main content and booking card ========== -->
+  <section class="trip-body">
+    <div class="container trip-layout">
+
+      <div class="trip-main">
+
+        <!-- overview -->
+        <div class="trip-block" id="overview">
+          <p class="trip-text" data-fill="overview1"></p>
+          <div class="facts" id="facts"></div>
+          <p class="trip-text" data-fill="overview2"></p>
+        </div>
+
+        <!-- tour highlights slider -->
+        <div class="trip-block" id="highlights">
+          <div class="block-head">
+            <h2>Tour Highlights</h2>
+            <button class="round-btn small" id="hlPrev" aria-label="previous"><i class="fa-solid fa-arrow-left"></i></button>
+            <button class="round-btn small" id="hlNext" aria-label="next"><i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+          <div class="hl-track" id="hlTrack"></div>
+        </div>
+
+        <!-- itinerary, each day opens and closes -->
+        <div class="trip-block" id="itinerary">
+          <div class="block-head">
+            <h2>Itinerary</h2>
+            <button class="outline-btn" id="toggleDays">Expand all <i class="fa-solid fa-chevron-down"></i></button>
+          </div>
+          <div class="timeline" id="timeline"></div>
+        </div>
+
+        <!-- map -->
+        <div class="trip-block" id="tour-map">
+          <div class="block-head">
+            <h2>Tour Itinerary Map</h2>
+            <a class="outline-btn" id="mapDownload" href="" download><i class="fa-solid fa-download"></i> Download Map</a>
+          </div>
+          <img class="trip-map" id="mapImg" src="" alt="">
+        </div>
+
+        <!-- fixed departures -->
+        <div class="trip-block" id="departures">
+          <div class="block-head">
+            <h2>Fixed Departures</h2>
+            <!-- calendar popup, departure days are marked in red (see trip-detail.js) -->
+            <div class="date-picker" id="datePicker">
+              <button class="outline-btn" id="dateBtn" aria-haspopup="true" aria-expanded="false">
+                <span id="dateLabel">Select Month, Year</span> <i class="fa-solid fa-chevron-down"></i>
+              </button>
+
+              <div class="calendar" id="calendar" hidden>
+                <div class="cal-head">
+                  <button class="cal-arrow" id="calPrev" aria-label="previous month"><i class="fa-solid fa-chevron-left"></i></button>
+                  <strong id="calTitle"></strong>
+                  <button class="cal-arrow" id="calNext" aria-label="next month"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+                <div class="cal-week"><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span></div>
+                <div class="cal-days" id="calDays"></div>
+                <div class="cal-foot">
+                  <span class="cal-key"><i></i>Departure date</span>
+                  <div>
+                    <button id="calMonth">This month</button>
+                    <button id="calAll">All dates</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="departureList"></div>
+          <p class="empty-note" id="noDepartures" hidden>No departures in this month. Try another month.</p>
+          <div class="center">
+            <button class="pill small" id="moreDepartures">
+              Load More
+              <span class="circle"><i class="fa-solid fa-arrow-down"></i></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- includes and excludes -->
+        <div class="trip-block" id="inclusions">
+          <div class="block-head"><h2>Inclusions/ Exclusions</h2></div>
+          <div class="incl-grid">
+            <div class="incl-card">
+              <h4><i class="fa-solid fa-circle-check yes"></i>Includes</h4>
+              <ul class="dot-list yes" id="includes"></ul>
+            </div>
+            <div class="incl-card">
+              <h4><i class="fa-solid fa-circle-xmark no"></i>Excludes</h4>
+              <ul class="dot-list no" id="excludes"></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- know before you go -->
+        <div class="trip-block" id="know">
+          <div class="block-head"><h2>Know before you go</h2></div>
+          <div id="knowList"></div>
+        </div>
+
+        <!-- what to pack, tabs on the left -->
+        <div class="trip-block" id="pack">
+          <div class="block-head"><h2>What to Pack</h2></div>
+          <div class="pack-grid">
+            <div class="pack-tabs" id="packTabs"></div>
+            <div class="pack-list" id="packList"></div>
+          </div>
+        </div>
+
+        <!-- good to know -->
+        <div class="trip-block" id="good">
+          <div class="block-head"><h2>Good to know</h2></div>
+          <div id="goodList"></div>
+        </div>
+
+        <!-- reviews, or the "no reviews yet" screen when there are none -->
+        <div class="trip-block" id="reviews">
+          <div class="block-head">
+            <h2>Reviews</h2>
+            <button class="pill small" id="writeReview">
+              <span id="writeReviewText">Write a review</span>
+              <span class="circle"><i class="fa-solid fa-arrow-right"></i></span>
+            </button>
+          </div>
+          <div id="reviewArea"></div>
+        </div>
+
+        <!-- faqs -->
+        <div class="trip-block" id="faqs">
+          <div class="block-head"><h2>FAQs</h2></div>
+          <div id="tripFaqs"></div>
+        </div>
+
+      </div>
+
+
+      <!-- booking card, stays in view while scrolling -->
+      <aside class="book-card">
+        <div class="book-top">
+          <div>
+            <p class="book-price">From Npr. <span id="bookPrice"></span></p>
+            <small>Price varies with group size</small>
+          </div>
+          <span class="popular"><i class="fa-solid fa-bolt"></i> Popular Right Now</span>
+        </div>
+
+        <ul class="book-features">
+          <li><i class="fa-solid fa-user-tie"></i>Expert Local Guides</li>
+          <li><i class="fa-solid fa-route"></i>Flexible Itineraries</li>
+          <li><i class="fa-solid fa-award"></i>Immersive Cultural Experiences</li>
+          <li><i class="fa-solid fa-leaf"></i>Eco-Conscious Adventures</li>
+        </ul>
+
+        <button class="book-btn" data-open="inquiryModal" data-subject="Booking">Book Now</button>
+        <button class="book-btn line" data-open="inquiryModal" data-subject="Quick inquiry">Quick Inquiry</button>
+
+        <a class="whatsapp" href="https://wa.me/9779819947890" target="_blank" rel="noopener">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span><small>Get Instant Response</small>+977 - 9819947890</span>
+        </a>
+      </aside>
+
+    </div>
+  </section>
+
+
+  <!-- ========== related trips ========== -->
+  <section class="bg-grey">
+    <div class="container">
+      <div class="head-row">
+        <div>
+          <span class="script">Related</span>
+          <h2 class="title">Packages made for you<span class="dot">.</span></h2>
+        </div>
+        <a href="trips.html" class="pill">
+          View All Packages
+          <span class="circle"><i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </div>
+
+      <!-- 3 other trips, same country first, added by trip-detail.js -->
+      <div class="related-grid" id="relatedGrid"></div>
+    </div>
+  </section>
+
+
+  <!-- ========== popups ========== -->
+  <!-- write a review -->
+  <div class="modal" id="reviewModal" hidden>
+    <div class="modal-box">
+      <button class="modal-close" aria-label="close"><i class="fa-solid fa-xmark"></i></button>
+      <h3>Write a review</h3>
+      <form id="reviewForm">
+        <label>Your name<input name="name" required></label>
+        <!-- rating stars, hover to preview and click to pick (none are picked to start with)
+             the stars are written 5 to 1 and shown in reverse, so css can light up every star before the one under the mouse -->
+        <fieldset class="star-pick">
+          <legend>Rating <span id="ratingText">Tap a star to rate</span></legend>
+          <div class="stars-row">
+            <input type="radio" name="rating" value="5" id="star5"><label for="star5" title="5 stars"><i class="fa-solid fa-star"></i></label>
+            <input type="radio" name="rating" value="4" id="star4"><label for="star4" title="4 stars"><i class="fa-solid fa-star"></i></label>
+            <input type="radio" name="rating" value="3" id="star3"><label for="star3" title="3 stars"><i class="fa-solid fa-star"></i></label>
+            <input type="radio" name="rating" value="2" id="star2"><label for="star2" title="2 stars"><i class="fa-solid fa-star"></i></label>
+            <input type="radio" name="rating" value="1" id="star1"><label for="star1" title="1 star"><i class="fa-solid fa-star"></i></label>
+          </div>
+        </fieldset>
+        <label>Title<input name="title" required></label>
+        <label>Your review<textarea name="text" rows="4" required></textarea></label>
+        <button class="book-btn" type="submit">Post Review</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- book now and quick inquiry -->
+  <div class="modal" id="inquiryModal" hidden>
+    <div class="modal-box">
+      <button class="modal-close" aria-label="close"><i class="fa-solid fa-xmark"></i></button>
+      <h3 id="inquiryTitle">Quick inquiry</h3>
+      <form id="inquiryForm">
+        <label>Full name<input name="name" required></label>
+        <label>Email<input name="email" type="email" required></label>
+        <label>Phone<input name="phone" type="tel"></label>
+        <label>Message<textarea name="message" rows="4" id="inquiryMessage"></textarea></label>
+        <button class="book-btn" type="submit">Send</button>
+      </form>
+      <p class="thanks" id="inquiryThanks" hidden>Thank you! Our team will get back to you within 24 hours.</p>
+    </div>
+  </div>
+
+  <!-- all photos -->
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="modal-close" aria-label="close"><i class="fa-solid fa-xmark"></i></button>
+    <button class="lb-arrow prev" id="lbPrev" aria-label="previous photo"><i class="fa-solid fa-chevron-left"></i></button>
+    <img id="lbImg" src="" alt="">
+    <button class="lb-arrow next" id="lbNext" aria-label="next photo"><i class="fa-solid fa-chevron-right"></i></button>
+    <p class="lb-count" id="lbCount"></p>
+  </div>
+
+
+  <!-- footer comes from footer.js -->
+  <div id="site-footer"></div>
+
+  <script src="header.js"></script>
+  <script src="footer.js"></script>
+  <script src="common.js"></script>
+  <script src="activity-data.js"></script>
+  <script src="destination-data.js"></script>
+  <script src="trip-data.js"></script>
+  <script src="trip-detail.js"></script>
+  <!-- animations for every page, keep this last -->
+  <script src="animations.js"></script>
+</body>
+</html>
