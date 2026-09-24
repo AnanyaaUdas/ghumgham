@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trips and Tours | Ghumgham</title>
+  <!-- font awesome for the icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="trips.css">
+  <link rel="stylesheet" href="animations.css">
+</head>
+<body class="trips-page">
+
+  <!-- header comes from header.js -->
+  <div id="site-header"></div>
+
+
+  <!-- ========== intro ========== -->
+  <section class="intro trips-intro">
+    <div class="container">
+      <span class="script">Trip listing</span>
+      <h1><b>Explore Our Diverse</b><br>Trips and Tours Packages</h1>
+      <p class="trips-text">Uncover a wide range of travel options tailored to your interests, from adventurous treks to cultural explorations through Nepal's stunning landscapes.</p>
+
+      <!-- faded mountain drawing on the right -->
+      <img class="trips-art" src="images/trips-mountain.png" alt="trips mountain">
+    </div>
+  </section>
+
+
+  <!-- ========== all trips with filters ========== -->
+  <section class="trips">
+    <div class="container">
+      <!-- filters and results come from listing.js -->
+      <div id="package-listing"></div>
+    </div>
+  </section>
+
+
+  <!-- footer comes from footer.js -->
+  <div id="site-footer"></div>
+
+  <script src="header.js"></script>
+  <script src="footer.js"></script>
+  <script src="common.js"></script>
+  <script src="activity-data.js"></script>
+  <script src="destination-data.js"></script>
+  <script src="trip-data.js"></script>
+  <script src="listing.js"></script>
+  <script src="trips.js"></script>
+  <!-- animations for every page, keep this last -->
+  <script src="animations.js"></script>
+</body>
+</html>

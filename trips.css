@@ -1,0 +1,40 @@
+/* trips listing page styles for ghumgham
+   shared stuff (header, footer, intro, package listing) is in common.css */
+
+
+/* white page with a soft pink glow at the top right */
+.trips-page {
+  background: radial-gradient(circle at 95% 0%, rgba(229, 57, 69, 0.07), transparent 30%), var(--white);
+}
+
+
+
+/* =================== intro =================== */
+.trips-intro { padding-bottom: 10px; }
+.trips-intro .container { position: relative; }
+
+/* first line bold and black, second line normal */
+.trips-intro h1 b { font-style: normal; color: var(--text); }
+
+.trips-text { max-width: 520px; font-size: 14px; }
+
+/* faded mountain drawing, sits behind the text on the right */
+.trips-art {
+  position: absolute;
+  right: 60px;
+  top: 0;
+  width: 360px;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+
+/* =================== listing =================== */
+.trips { padding-top: 20px; }
+.trips .listing { margin-top: 0; }
+
+
+/* =================== small tablets and big phones =================== */
+@media (max-width: 860px) {
+  .trips-art { display: none; }
+}
