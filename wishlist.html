@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist | Ghumgham</title>
+  <!-- font awesome for the icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="wishlist.css">
+  <link rel="stylesheet" href="animations.css">
+</head>
+<body>
+
+  <!-- header comes from header.js -->
+  <div id="site-header"></div>
+
+
+  <!-- ========== breadcrumb and intro ========== -->
+  <section class="intro">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="homepage.html">Home</a>
+        <i></i>
+        <span>Wishlist</span>
+      </nav>
+
+      <span class="script">Wishlist</span>
+      <h1>Your <b>Saved Trips</b></h1>
+      <p class="wish-lead">Trips you liked are kept here, so you can compare them and book when you are ready. They are saved in this browser, no account needed.</p>
+    </div>
+  </section>
+
+
+  <!-- ========== saved trips ========== -->
+  <!-- the cards come from wishlist.js, the heart on each card takes the trip off the list -->
+  <section class="wishlist">
+    <div class="container">
+      <div class="wish-grid" id="wishGrid"></div>
+
+      <!-- shown when nothing is saved yet -->
+      <div class="wish-empty" id="wishEmpty" hidden>
+        <i class="fa-regular fa-heart"></i>
+        <h3>Your wishlist is empty</h3>
+        <p>Tap the like button on any trip to save it here.</p>
+        <a href="trips.html" class="pill small">
+          Explore Trips
+          <span class="circle"><i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- footer comes from footer.js -->
+  <div id="site-footer"></div>
+
+  <script src="header.js"></script>
+  <script src="footer.js"></script>
+  <script src="common.js"></script>
+  <script src="wishlist.js"></script>
+  <!-- animations for every page, keep this last -->
+  <script src="animations.js"></script>
+</body>
+</html>

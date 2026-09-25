@@ -1,0 +1,47 @@
+/* wishlist page
+   header, footer, intro, breadcrumb and the package card are shared and live in common.css */
+
+.wish-lead { max-width: 560px; font-size: 15px; }
+
+.wishlist { padding: 30px 0 90px; }
+
+.wish-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+/* the heart sits on the top right of the photo */
+.wish-item { position: relative; }
+
+.wish-remove {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--red);
+  font-size: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.wish-remove:hover { transform: scale(1.1); }
+
+/* nothing saved yet */
+.wish-empty { max-width: 360px; margin: 20px auto 0; text-align: center; }
+.wish-empty > i { font-size: 46px; color: var(--red); }
+.wish-empty h3 { margin: 14px 0 6px; font-size: 20px; font-weight: 600; }
+.wish-empty p { margin-bottom: 18px; font-size: 14px; color: var(--muted); }
+
+
+/* =================== tablets and phones =================== */
+@media (max-width: 960px) {
+  .wish-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .wish-grid { grid-template-columns: 1fr; }
+}
