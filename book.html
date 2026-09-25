@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Your Trip | Ghumgham</title>
+  <!-- font awesome for the icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="book.css">
+  <link rel="stylesheet" href="animations.css">
+</head>
+<body>
+
+  <!-- header comes from header.js -->
+  <div id="site-header"></div>
+
+  <!-- the book now buttons on the trip page open this page with the trip and the date in the link,
+       e.g. book.html?trip=annapurna-wonderland&date=2026-10-12 -->
+
+
+  <!-- ========== title ========== -->
+  <div class="container">
+    <div class="book-head">
+      <div>
+        <span class="script">Booking Process</span>
+        <h1>Book your <b>trip</b></h1>
+        <p>Turn your travel dream to reality. It's quick, easy and secure.</p>
+      </div>
+
+      <!-- faint mountain on the right -->
+      <svg class="head-peak" viewBox="0 0 240 90" aria-hidden="true">
+        <path d="M0,90 L40,70 L70,74 L100,46 L118,52 L140,14 L152,4 L166,24 L180,20 L200,52 L222,64 L240,62 L240,90 Z" fill="#fbe3e6"/>
+        <path d="M140,14 L152,4 L166,24 L158,22 L150,34 L146,22 Z" fill="#f4c7cd"/>
+      </svg>
+    </div>
+  </div>
+
+
+  <!-- ========== steps, the form and the trip summary ========== -->
+  <section class="booking">
+    <div class="container booking-grid">
+
+      <!-- steps on the left, the one being filled is red, finished ones can be clicked to go back -->
+      <ol class="steps-list" id="stepsList">
+        <li class="active" data-step="1">
+          <span class="step-icon"><i class="fa-solid fa-map-location-dot"></i></span>
+          <span><b>Traveller Details</b><small>Tell us about your travel plans</small></span>
+        </li>
+        <li data-step="2">
+          <span class="step-icon"><i class="fa-regular fa-credit-card"></i></span>
+          <span><b>Payment</b><small>Secure your booking</small></span>
+        </li>
+        <li data-step="3">
+          <span class="step-icon"><i class="fa-regular fa-calendar-check"></i></span>
+          <span><b>Confirmation</b><small>Your trip is booked and on its way</small></span>
+        </li>
+      </ol>
+
+      <div class="step-area">
+
+        <!-- ---------- step 1: traveller details ---------- -->
+        <form class="step-panel" id="step1" novalidate>
+          <h2>Traveller Details</h2>
+          <p class="step-sub">Fill in the details of the person who will be travelling.</p>
+
+          <label>Full Name<input type="text" name="name" placeholder="Your Full Name" required></label>
+          <label>Email Address<input type="email" name="email" placeholder="Your email address" required></label>
+          <label>Contact No.<input type="tel" name="phone" placeholder="Your contact no." required></label>
+
+          <h4>No. of Travelers</h4>
+          <div class="counters">
+            <div>
+              <span>No. of Adults (above 12 yrs old)</span>
+              <div class="counter" data-count="adults">
+                <button type="button" data-change="-1" aria-label="one adult less"><i class="fa-solid fa-minus"></i></button>
+                <output>1</output>
+                <button type="button" data-change="1" aria-label="one adult more"><i class="fa-solid fa-plus"></i></button>
+              </div>
+            </div>
+            <div>
+              <span>No. of Children (below 12 yrs old)</span>
+              <div class="counter" data-count="children">
+                <button type="button" data-change="-1" aria-label="one child less"><i class="fa-solid fa-minus"></i></button>
+                <output>0</output>
+                <button type="button" data-change="1" aria-label="one child more"><i class="fa-solid fa-plus"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <label>Additional Information<textarea name="notes" rows="4" placeholder="Let's know if you need anything"></textarea></label>
+
+          <p class="form-error" id="step1Error" hidden>Please fill in your name, a valid email and your contact number.</p>
+
+          <div class="step-foot">
+            <button type="submit" class="pill small">
+              Proceed to payment
+              <span class="circle"><i class="fa-solid fa-arrow-right"></i></span>
+            </button>
+          </div>
+        </form>
+
+
+        <!-- ---------- step 2: payment ---------- -->
+        <!-- only the look of the payment step for now, no money is taken here
+             in wordpress this is where the real payment gateway (khalti, esewa, stripe and so on) plugs in -->
+        <form class="step-panel" id="step2" novalidate hidden>
+          <h2>Payment Method</h2>
+          <p class="step-sub">How'd you like to pay for the trip?</p>
+
+          <div class="pay-options">
+            <label class="pay-option">
+              <input type="radio" name="plan" value="deposit" checked>
+              <span class="pay-tick"></span>
+              <span class="pay-text"><b>Pay 20% deposit</b><small>Secure your seats now. Your <span id="balanceText"></span> balance is due before the trip.</small></span>
+              <strong id="depositAmount"></strong>
+            </label>
+            <label class="pay-option">
+              <input type="radio" name="plan" value="full">
+              <span class="pay-tick"></span>
+              <span class="pay-text"><b>Pay in full</b><small>Settle the whole trip today. Nothing more to pay later.</small></span>
+              <strong id="fullAmount"></strong>
+            </label>
+          </div>
+
+          <h4>Payment Method</h4>
+          <div class="method-tabs" id="methodTabs">
+            <button type="button" class="active" data-method="card"><i class="fa-regular fa-credit-card"></i>Credit/ Debit Card</button>
+            <button type="button" data-method="qr"><i class="fa-solid fa-qrcode"></i>UPI / QR Code</button>
+            <button type="button" data-method="bank"><i class="fa-solid fa-building-columns"></i>Bank Transfer</button>
+          </div>
+
+          <div class="method-box" data-box="card">
+            <label>Cardholder Name*<input type="text" name="cardName" placeholder="Enter Cardholder Name" autocomplete="cc-name"></label>
+            <label>Card Number*<input type="text" name="cardNumber" placeholder="Enter your card number" inputmode="numeric" autocomplete="cc-number" maxlength="19"></label>
+            <div class="two-cols">
+              <label>Expiry Date*<input type="text" name="cardExpiry" placeholder="MM / YY" autocomplete="cc-exp" maxlength="7"></label>
+              <label>CVV*<input type="password" name="cardCvv" placeholder="Enter CVV" inputmode="numeric" autocomplete="cc-csc" maxlength="4"></label>
+            </div>
+          </div>
+
+          <div class="method-box" data-box="qr" hidden>
+            <div class="qr-box">
+              <i class="fa-solid fa-qrcode"></i>
+              <p>After you confirm, we send a payment QR code to your email and WhatsApp. Scan it with Fonepay, eSewa, Khalti or any UPI app to pay.</p>
+            </div>
+          </div>
+
+          <div class="method-box" data-box="bank" hidden>
+            <!-- same bank details as the terms page, check them with the office before the site goes live -->
+            <ul class="bank-list">
+              <li><span>Account Name</span>Ghumgham Pvt. Ltd.</li>
+              <li><span>Account Number</span>01909815520027</li>
+              <li><span>Bank Name</span>Himalayan Bank Limited</li>
+              <li><span>Branch</span>Thamel</li>
+              <li><span>Swift Code</span>HIMANPKA</li>
+            </ul>
+            <p class="bank-note">Please add your name as the payment reference. Your booking is confirmed once the transfer reaches us.</p>
+          </div>
+
+          <p class="form-error" id="step2Error" hidden>Please check the card details.</p>
+
+          <div class="step-foot">
+            <button type="button" class="back-link" data-go="1"><i class="fa-solid fa-arrow-left"></i>Back</button>
+            <button type="submit" class="pill small">
+              Proceed to Confirmation
+              <span class="circle"><i class="fa-solid fa-arrow-right"></i></span>
+            </button>
+          </div>
+        </form>
+
+
+        <!-- ---------- step 3: confirmation ---------- -->
+        <div class="step-panel done-panel" id="step3" hidden>
+          <span class="done-badge"><i class="fa-solid fa-certificate"></i><i class="fa-solid fa-check"></i></span>
+          <h2>Your trip is confirmed!</h2>
+          <p class="done-text">Thank you for choosing Ghumgham. Your booking has been successfully confirmed. We're excited to be part of your journey.</p>
+
+          <div class="done-facts">
+            <div><i class="fa-regular fa-calendar"></i><span><b>Booking ID</b><small id="bookingId"></small></span></div>
+            <div><i class="fa-regular fa-calendar-days"></i><span><b>Trip Date</b><small id="doneDate"></small></span></div>
+            <div><i class="fa-regular fa-envelope"></i><span><b>Confirmation</b><small>sent to your email</small></span></div>
+          </div>
+
+          <div class="next-steps">
+            <div><i class="fa-solid fa-envelope-open-text"></i><b>Check your email</b><small>Your booking PDF and e-ticket will arrive in 5 minutes.</small></div>
+            <div><i class="fa-solid fa-phone"></i><b>We'll call you</b><small>We'll contact you soon, so stay tuned.</small></div>
+          </div>
+
+          <div class="help-box">
+            <div>
+              <h4>Need help? Let's talk!</h4>
+              <p>Ask questions, get personalised suggestions, and plan your perfect trip in just a few minutes!</p>
+            </div>
+            <a href="https://wa.me/9779819947890" target="_blank" rel="noopener" class="wa-btn"><i class="fa-brands fa-whatsapp"></i>Chat on WhatsApp</a>
+          </div>
+
+          <div class="step-foot">
+            <a href="homepage.html" class="pill small">
+              Back to Homepage
+              <span class="circle"><i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- trip summary on the right, the prices change with the number of travellers -->
+      <aside class="trip-summary">
+        <div id="summaryPhoto"></div>
+        <h3 id="summaryTitle"></h3>
+        <div class="summary-meta">
+          <span><i class="fa-solid fa-location-dot"></i><span id="summaryPlace"></span></span>
+          <span><i class="fa-regular fa-calendar"></i><span id="summaryDays"></span></span>
+        </div>
+
+        <h4>Trip Information</h4>
+        <div class="sum-row"><span>Start Date:</span><b id="startDate"></b></div>
+        <div class="sum-row"><span>End Date:</span><b id="endDate"></b></div>
+
+        <h4>Pricing</h4>
+        <div class="sum-row"><span id="adultLabel"></span><b id="adultPrice"></b></div>
+        <div class="sum-row" id="childRow"><span id="childLabel"></span><b id="childPrice"></b></div>
+        <div class="sum-row" id="discountRow"><span>Group discount (10%):</span><b id="discountPrice"></b></div>
+        <div class="sum-total"><span>Total:</span><b id="totalPrice"></b></div>
+      </aside>
+    </div>
+  </section>
+
+
+  <!-- footer comes from footer.js -->
+  <div id="site-footer"></div>
+
+  <script src="header.js"></script>
+  <script src="footer.js"></script>
+  <script src="common.js"></script>
+  <script src="activity-data.js"></script>
+  <script src="destination-data.js"></script>
+  <script src="trip-data.js"></script>
+  <script src="book.js"></script>
+  <!-- animations for every page, keep this last -->
+  <script src="animations.js"></script>
+</body>
+</html>
