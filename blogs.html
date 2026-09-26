@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insights &amp; Blogs | Ghumgham</title>
+  <!-- font awesome for the icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="blogs.css">
+  <link rel="stylesheet" href="animations.css">
+</head>
+<body>
+
+  <!-- header comes from header.js -->
+  <div id="site-header"></div>
+
+
+  <!-- ========== breadcrumb and intro ========== -->
+  <section class="intro">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="homepage.html">Home</a>
+        <i></i>
+        <span>Insights &amp; Blogs</span>
+      </nav>
+
+      <span class="script">Insights &amp; Blogs</span>
+      <h1>Explore Inspiring <b>Stories, Insights &amp; Expert Perspectives</b></h1>
+    </div>
+  </section>
+
+
+  <!-- ========== featured blogs ========== -->
+  <!-- the posts marked featured in blog-data.js, filled in by blogs.js -->
+  <section class="featured">
+    <div class="container">
+      <div class="blog-head"><h2>Featured Blogs</h2></div>
+
+      <div class="featured-grid">
+        <div id="featBig"></div>
+        <div class="feat-col" id="featMid"></div>
+        <div class="feat-col" id="featSmall"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========== recent blogs with categories and archive ========== -->
+  <section class="recent">
+    <div class="container recent-grid">
+      <div>
+        <div class="blog-head">
+          <h2>Recent Blogs</h2>
+          <button class="clear-filter" id="clearFilter" hidden>Show all <i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="blog-grid" id="recentList"></div>
+        <p class="empty-note" id="noBlogs" hidden>No blogs match this filter yet. Try another category or year.</p>
+
+        <div class="center">
+          <button class="pill small" id="moreBlogs">
+            Load More
+            <span class="circle"><i class="fa-solid fa-arrow-down"></i></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- clicking a category or a year shows only those posts, clicking it again shows all -->
+      <aside class="blog-side">
+        <div class="side-box">
+          <h3>Categories</h3>
+          <ul class="side-list" id="categoryList"></ul>
+          <button class="side-more" id="moreCategories">+ Load 2 more</button>
+        </div>
+
+        <div class="side-box">
+          <h3>Archive</h3>
+          <ul class="side-list" id="yearList"></ul>
+          <button class="side-more" id="moreYears">+ Load 2 more</button>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+
+  <!-- footer comes from footer.js -->
+  <div id="site-footer"></div>
+
+  <script src="header.js"></script>
+  <script src="footer.js"></script>
+  <script src="common.js"></script>
+  <script src="blog-data.js"></script>
+  <script src="blogs.js"></script>
+  <!-- animations for every page, keep this last -->
+  <script src="animations.js"></script>
+</body>
+</html>

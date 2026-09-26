@@ -1,0 +1,165 @@
+/* insights and blogs page
+   the blog card, date and read more styles are shared and live in common.css */
+
+
+/* =================== section headings =================== */
+/* "featured blogs" and "recent blogs" with a short red line under the words and a thin grey line across */
+.blog-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.blog-head h2 {
+  padding: 0 4px 10px;
+  margin-bottom: -1px;
+  font-size: 20px;
+  font-weight: 500;
+  border-bottom: 2px solid var(--red);
+}
+
+.clear-filter {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  border: none;
+  background: none;
+  color: var(--red);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* the heading sits on one line on big screens like in the design */
+.intro h1 { max-width: none; font-size: clamp(28px, 3vw, 42px); }
+
+
+/* =================== featured blogs =================== */
+.featured { padding: 40px 0 20px; }
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1.15fr 1fr;
+  gap: 16px;
+}
+
+.featured .blog-card img { height: 230px; }
+.featured .blog-body h4 { font-size: 17px; }
+
+/* the big card, middle and small ones all get a light border so they sit on the white page */
+.featured .blog-card,
+.feat-card,
+.recent .blog-card { border: 1px solid var(--border); }
+
+.feat-col { display: flex; flex-direction: column; gap: 16px; }
+
+/* photo on the left, words on the right */
+.feat-card {
+  display: grid;
+  flex: 1;
+  overflow: hidden;
+  background: var(--white);
+  border-radius: 8px;
+}
+
+.feat-card.mid { grid-template-columns: 40% 1fr; }
+.feat-card.small { grid-template-columns: 38% 1fr; }
+
+.feat-card img { height: 100%; min-height: 110px; transition: scale 0.6s ease; }
+.feat-card:hover img { scale: 1.08; }
+
+.feat-body { display: flex; flex-direction: column; justify-content: space-between; padding: 12px 14px; }
+.feat-body h4 { font-size: 15px; font-weight: 500; line-height: 1.4; transition: color 0.3s; }
+.feat-card.small h4 { font-size: 13.5px; }
+.feat-card:hover h4 { color: var(--red); }
+
+.feat-body .blog-foot { font-size: 11px; }
+
+
+/* =================== recent blogs =================== */
+.recent { padding: 40px 0 80px; }
+
+.recent-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 24px;
+  align-items: start;
+}
+
+.recent .blog-grid { grid-template-columns: 1fr 1fr; }
+.recent .blog-card img { height: 210px; }
+
+.empty-note { padding: 30px 0; font-size: 14px; }
+
+
+/* =================== side boxes =================== */
+.blog-side {
+  position: sticky;
+  top: 100px;
+  padding: 28px 26px;
+  background: #fdf4f5;
+  border-radius: 10px;
+}
+
+.side-box + .side-box { margin-top: 26px; padding-top: 26px; border-top: 1px solid #f3d6da; }
+
+/* heading with a red bar on its left */
+.side-box h3 {
+  margin-bottom: 16px;
+  padding-left: 12px;
+  border-left: 3px solid var(--red);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--navy);
+}
+
+.side-list li + li { margin-top: 4px; }
+
+.side-list button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 6px 0;
+  border: none;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.3s, padding 0.3s;
+}
+
+.side-list button:hover { color: var(--red); padding-left: 4px; }
+.side-list button.active { color: var(--red); font-weight: 500; text-decoration: underline; text-underline-offset: 4px; }
+.side-list button i { font-size: 12px; }
+
+.side-more {
+  margin-top: 10px;
+  border: none;
+  background: none;
+  color: var(--red);
+  font: inherit;
+  font-size: 12px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
+/* =================== tablets and phones =================== */
+@media (max-width: 1024px) {
+  .featured-grid { grid-template-columns: 1fr 1fr; }
+  .featured-grid > :first-child { grid-column: span 2; }
+  .recent-grid { grid-template-columns: 1fr; }
+  .blog-side { position: static; }
+}
+
+@media (max-width: 640px) {
+  .featured-grid { grid-template-columns: 1fr; }
+  .featured-grid > :first-child { grid-column: auto; }
+  .recent .blog-grid { grid-template-columns: 1fr; }
+}
