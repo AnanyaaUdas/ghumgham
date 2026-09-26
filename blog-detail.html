@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insights &amp; Blogs | Ghumgham</title>
+  <!-- font awesome for the icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="blog-detail.css">
+  <link rel="stylesheet" href="animations.css">
+</head>
+<body>
+
+  <!-- header comes from header.js -->
+  <div id="site-header"></div>
+
+  <!-- one page for every blog post, blog-detail.js reads ?post= from the link and fills it in from blog-data.js -->
+
+
+  <!-- ========== breadcrumb ========== -->
+  <div class="container">
+    <nav class="breadcrumb post-crumb">
+      <a href="homepage.html">Home</a>
+      <i></i>
+      <a href="blogs.html">Insights &amp; Blogs</a>
+      <i></i>
+      <span id="crumbTitle"></span>
+    </nav>
+  </div>
+
+
+  <!-- ========== navy top with the title, author, date and share buttons ========== -->
+  <section class="post-top">
+    <div class="container">
+      <h1 id="postTitle"></h1>
+
+      <div class="post-info">
+        <div class="post-by">
+          <span class="author"><span class="initials" id="authorInitials"></span><span id="authorName"></span></span>
+          <span class="post-date"><i class="fa-regular fa-calendar"></i><span id="postDate"></span></span>
+        </div>
+
+        <!-- facebook and x open their share windows, the others copy the link -->
+        <div class="share">
+          <span>Share this article:</span>
+          <div class="socials" id="shareButtons">
+            <a href="#" data-share="facebook" aria-label="share on facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" data-share="copy" aria-label="copy link for instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" data-share="copy" aria-label="copy link for youtube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" data-share="copy" aria-label="copy link for tiktok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" data-share="x" aria-label="share on x"><i class="fa-brands fa-x-twitter"></i></a>
+          </div>
+          <span class="copied" id="copied" hidden>Link copied</span>
+        </div>
+      </div>
+
+      <!-- main photo, half on the navy and half on the white -->
+      <div class="post-cover" id="postCover"></div>
+    </div>
+  </section>
+
+
+  <!-- ========== contents on the left, the article on the right ========== -->
+  <section class="post-main">
+    <div class="container post-grid">
+      <aside class="toc">
+        <h3>Table of Contents</h3>
+        <!-- built from the headings in the article, the one being read turns red -->
+        <ul id="tocList"></ul>
+      </aside>
+
+      <div>
+        <article class="post-body" id="postBody"></article>
+
+        <!-- previous and next post -->
+        <nav class="post-nav" id="postNav"></nav>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========== comments ========== -->
+  <section class="comments">
+    <div class="container">
+      <div class="head-row">
+        <div>
+          <span class="script">Comments</span>
+          <h2 class="title">Share your experiences</h2>
+        </div>
+        <a href="#commentForm" class="pill small" id="commentNow">
+          Comment Now
+          <span class="circle"><i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </div>
+
+      <div class="comment-grid">
+        <div>
+          <div id="commentList"></div>
+          <button class="pill small" id="moreComments">
+            Load More Comments
+            <span class="circle"><i class="fa-solid fa-arrow-down"></i></span>
+          </button>
+        </div>
+
+        <!-- new comments show at the top of the list straight away (in wordpress this becomes the normal comment form) -->
+        <form class="comment-form" id="commentForm">
+          <h3>Write a Comment</h3>
+          <label>Full Name<input type="text" name="name" placeholder="Your Full Name" required></label>
+          <label>Email Address <small>(Optional)</small><input type="email" name="email" placeholder="Your email address"></label>
+          <label>Message<textarea name="text" rows="4" placeholder="Enter your Message" required></textarea></label>
+          <button type="submit" class="form-btn">Post Comment</button>
+          <p class="form-thanks" id="commentThanks" hidden><i class="fa-solid fa-circle-check"></i>Thank you, your comment is up.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- footer comes from footer.js -->
+  <div id="site-footer"></div>
+
+  <script src="header.js"></script>
+  <script src="footer.js"></script>
+  <script src="common.js"></script>
+  <script src="blog-data.js"></script>
+  <script src="blog-detail.js"></script>
+  <!-- animations for every page, keep this last -->
+  <script src="animations.js"></script>
+</body>
+</html>
