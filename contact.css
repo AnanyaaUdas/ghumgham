@@ -1,0 +1,153 @@
+/* contact us page
+   header, footer, breadcrumb, script labels and buttons are shared and live in common.css */
+
+
+/* =================== details and form =================== */
+.contact { padding: 50px 0 90px; }
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.contact-info h1 {
+  margin: 6px 0 14px;
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+.contact-info h1 b { font-weight: 800; font-style: italic; color: var(--navy); }
+.contact-lead { max-width: 520px; font-size: 14px; }
+
+/* the four little boxes with a round pink icon */
+.contact-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px 20px;
+  margin-top: 28px;
+  padding-bottom: 26px;
+  border-bottom: 1px solid var(--border);
+}
+
+.contact-card { display: flex; align-items: center; gap: 14px; }
+.contact-card small { display: block; font-size: 12px; }
+.contact-card b { font-size: 14px; font-weight: 600; }
+a.contact-card:hover b { color: var(--red); }
+
+.contact-card .icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fdecee;
+  color: var(--red);
+  font-size: 15px;
+  transition: background 0.3s, color 0.3s;
+}
+
+a.contact-card:hover .icon { background: var(--red); color: var(--white); }
+
+.follow h4 { margin: 24px 0 14px; font-size: 15px; font-weight: 600; }
+.follow-icons { display: flex; gap: 12px; }
+
+.follow-icons a {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--red);
+  color: var(--white);
+  font-size: 16px;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.follow-icons a:hover { background: var(--navy); transform: translateY(-3px); }
+
+
+/* message form in a light grey box */
+.message-form { padding: 30px 28px; border-radius: 10px; background: #f7f7f8; }
+.message-form h2 { margin: 4px 0 24px; font-size: 26px; font-weight: 600; }
+.message-form label { display: block; margin-bottom: 18px; font-size: 13px; font-weight: 600; }
+
+.message-form input,
+.message-form textarea {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 11px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--white);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 400;
+  resize: vertical;
+  transition: border-color 0.3s;
+}
+
+.message-form input:focus,
+.message-form textarea:focus { outline: none; border-color: var(--red); }
+
+.form-foot { display: flex; justify-content: flex-end; align-items: center; gap: 16px; }
+.form-thanks { margin-right: auto; }
+
+
+/* =================== map =================== */
+.map-section { padding: 0 0 90px; }
+
+.map-box {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #e8ebf2;
+}
+
+/* google puts its own place box in the top left corner of the map, which sat under our card
+   the map is made 300px taller and pulled up by 150px, so google's box is hidden above the edge
+   and the pin still sits in the middle of what you see */
+.map-box iframe {
+  position: absolute;
+  top: -150px;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 300px);
+  border: 0;
+}
+
+/* white card sitting on the top left of the map */
+.map-card {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  padding: 18px 20px;
+  border-radius: 10px;
+  background: var(--white);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  font-size: 14px;
+}
+
+.map-card h4 { margin-bottom: 8px; font-size: 16px; font-weight: 500; color: var(--red); }
+.map-card a { display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; font-weight: 500; color: var(--red); }
+.map-card a i { transition: transform 0.3s; }
+.map-card a:hover i { transform: translateX(4px); }
+
+
+/* =================== tablets and phones =================== */
+@media (max-width: 960px) {
+  .contact-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .contact-info h1 { font-size: 30px; }
+  .contact-cards { grid-template-columns: 1fr; }
+  .map-box { height: 460px; }
+  .map-card { top: auto; bottom: 16px; left: 16px; right: 16px; }
+}

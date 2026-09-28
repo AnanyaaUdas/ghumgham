@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Ghumgham</title>
+  <!-- font awesome for the icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="contact.css">
+  <link rel="stylesheet" href="animations.css">
+</head>
+<body>
+
+  <!-- header comes from header.js -->
+  <div id="site-header"></div>
+
+
+  <!-- ========== breadcrumb ========== -->
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="homepage.html">Home</a>
+      <i></i>
+      <span>Contact Us</span>
+    </nav>
+  </div>
+
+
+  <!-- ========== contact details on the left, message form on the right ========== -->
+  <section class="contact">
+    <div class="container contact-grid">
+      <div class="contact-info">
+        <span class="script">Get To Know Us</span>
+        <h1>Lets talk our <b>Expert Travel Guides</b></h1>
+        <p class="contact-lead">Our expert travel guides bring every destination to life with local knowledge, passion and care. They ensure safe, authentic journeys from the first plan to the last goodbye.</p>
+
+        <!-- phone and email open the phone or mail app -->
+        <div class="contact-cards">
+          <a href="tel:+9779862964046" class="contact-card">
+            <span class="icon"><i class="fa-solid fa-phone-volume"></i></span>
+            <span><small>Call us directly</small><b>+977 - 9862964046</b></span>
+          </a>
+          <a href="mailto:info@ghumgham.com.np" class="contact-card">
+            <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+            <span><small>Email us at</small><b>info@ghumgham.com.np</b></span>
+          </a>
+          <a href="#officeMap" class="contact-card">
+            <span class="icon"><i class="fa-solid fa-location-dot"></i></span>
+            <span><small>Visit Us at</small><b>Pulchowk-02, Lalitpur</b></span>
+          </a>
+          <div class="contact-card">
+            <span class="icon"><i class="fa-solid fa-clock"></i></span>
+            <span><small>Opening hours</small><b>Mon-Fri: 9:00 AM to 6:00 PM</b></span>
+          </div>
+        </div>
+
+        <div class="follow">
+          <h4>Follow Us on:</h4>
+          <div class="follow-icons">
+            <a href="#" aria-label="facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="youtube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" aria-label="tiktok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" aria-label="x"><i class="fa-brands fa-x-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- in wordpress this form goes to the contact form plugin, for now it only shows a thank you -->
+      <form class="message-form" id="messageForm">
+        <span class="script">Send a message</span>
+        <h2>Looking For Any Help</h2>
+
+        <label>Full Name<input type="text" name="name" placeholder="Your Full Name" required></label>
+        <label>Email Address<input type="email" name="email" placeholder="Your email address" required></label>
+        <label>Message<textarea name="message" rows="4" placeholder="Enter your Message" required></textarea></label>
+
+        <div class="form-foot">
+          <p class="form-thanks" id="messageThanks" hidden><i class="fa-solid fa-circle-check"></i>Thank you, we will get back to you soon.</p>
+          <button type="submit" class="pill small">
+            Submit Now
+            <span class="circle"><i class="fa-solid fa-arrow-right"></i></span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+
+  <!-- ========== map ========== -->
+  <!-- google map of the office with a small card on top, no api key needed for this kind of map -->
+  <section class="map-section">
+    <div class="container">
+      <div class="map-box" id="officeMap">
+        <iframe src="https://maps.google.com/maps?q=Pulchowk%2C%20Lalitpur%2C%20Nepal&z=16&output=embed" title="ghumgham office map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+        <div class="map-card">
+          <h4>Ghumgham Pvt. Ltd.</h4>
+          <p>Pulchowk-02, Lalitpur, Nepal</p>
+          <a href="https://www.google.com/maps/search/?api=1&query=Pulchowk%2C%20Lalitpur%2C%20Nepal" target="_blank" rel="noopener">View on Google Maps <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- footer comes from footer.js -->
+  <div id="site-footer"></div>
+
+  <script src="header.js"></script>
+  <script src="footer.js"></script>
+  <script src="common.js"></script>
+  <script src="contact.js"></script>
+  <!-- animations for every page, keep this last -->
+  <script src="animations.js"></script>
+</body>
+</html>
