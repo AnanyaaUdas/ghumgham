@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Ghumgham</title>
+  <!-- font awesome for the icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="about.css">
+  <link rel="stylesheet" href="animations.css">
+</head>
+<body class="about-page">
+
+  <!-- header comes from header.js -->
+  <div id="site-header"></div>
+
+
+  <!-- ========== who we are ========== -->
+  <section class="who">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="homepage.html">Home</a>
+        <i></i>
+        <span>About Us</span>
+      </nav>
+
+      <div class="who-grid">
+        <div>
+          <span class="script">Who we are?</span>
+          <h1>Experts create unforgettable <b>journeys for every traveler.</b></h1>
+          <p>We are a passionate travel agency dedicated to creating memorable travel experiences for explorers worldwide. From relaxing beach vacations to exciting adventure tours, our team carefully plans every journey with attention to comfort, safety, and unforgettable moments. Whether you are planning a romantic getaway, a family holiday, or a solo escape, we offer personalized itineraries designed around your interests, budget, and schedule. With trusted partners, local knowledge, and friendly support from start to finish, we make every step of your trip simple and stress-free. Let us turn your travel dreams into meaningful stories you will cherish for years to come.</p>
+        </div>
+        <img class="who-img" src="images/about-who.jpg" alt="about who">
+      </div>
+
+      <!-- numbers count up when they scroll into view (see about.js) -->
+      <div class="stats">
+        <div class="stat"><strong><span data-count="10">0</span>+</strong><p>Years of Excellence</p></div>
+        <div class="stat"><strong><span data-count="500">0</span>+</strong><p>Global Voyagers</p></div>
+        <div class="stat"><strong><span data-count="80">0</span>+</strong><p>Curated Places</p></div>
+        <div class="stat"><strong><span data-count="300">0</span>+</strong><p>Trusted Partner</p></div>
+      </div>
+
+      <div class="who-photos">
+        <img src="images/about-mountains.jpg" alt="about mountains">
+        <img src="images/about-street.jpg" alt="about street">
+      </div>
+
+      <p class="belief">At Ghumgham, we believe every journey should feel inspiring, seamless, and unforgettable. Our travel experts carefully <span>design personalized experiences that combine adventure, comfort, and authentic cultural discovery for travelers worldwide.</span></p>
+    </div>
+  </section>
+
+
+  <!-- ========== why choose us (navy box) ========== -->
+  <section class="why-wrap">
+    <div class="why">
+      <div class="why-head">
+        <span class="script">Why Choose Us?</span>
+        <h2>Exceptional travel experiences with comfort.</h2>
+        <p>We combine expert planning, personalized service, and unforgettable destinations to create seamless travel experiences for every explorer.</p>
+      </div>
+
+      <div class="why-grid">
+        <img src="images/about-why.jpg" alt="about why">
+
+        <div class="why-cards">
+          <div class="why-card">
+            <i class="fa-solid fa-person-hiking"></i>
+            <h3>Expert Travel Guides</h3>
+            <p>Professional guidance for smooth, safe, and memorable travel experiences worldwide.</p>
+          </div>
+          <div class="why-card">
+            <i class="fa-solid fa-calendar-check"></i>
+            <h3>Flexible Booking</h3>
+            <p>Simple and traveler friendly booking options designed for complete convenience.</p>
+          </div>
+          <div class="why-card">
+            <i class="fa-solid fa-map-location-dot"></i>
+            <h3>Premium Destinations</h3>
+            <p>Explore breathtaking destinations carefully selected for unforgettable adventure tours.</p>
+          </div>
+          <div class="why-card">
+            <i class="fa-solid fa-headset"></i>
+            <h3>24/7 Customer Support</h3>
+            <p>Reliable travel assistance available anytime throughout your entire journey.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========== our history, one year at a time ========== -->
+  <section class="history">
+    <!-- faded world map behind the section -->
+    <img class="world-map" src="images/world-map.png" alt="world map">
+
+    <div class="container history-grid">
+      <div class="history-intro">
+        <span class="script">History</span>
+        <h2 class="title black">Our Journey through time</h2>
+        <p>Look through our journey of starting this travel agency with the hope of bringing more visitors.</p>
+      </div>
+
+      <!-- the year, title, text and photo change with the arrows (see about.js) -->
+      <div class="history-story">
+        <h3 id="historyTitle"></h3>
+        <p id="historyText"></p>
+
+        <div class="history-nav">
+          <button id="historyPrev" aria-label="previous year"><i class="fa-solid fa-arrow-left"></i></button>
+          <strong id="historyYear"></strong>
+          <small id="historyLast"></small>
+          <button id="historyNext" aria-label="next year"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <img class="history-img" id="historyImg" src="" alt="">
+    </div>
+  </section>
+
+
+  <!-- ========== how it works ========== -->
+  <section class="steps-wrap">
+    <div class="steps">
+      <!-- photo with a blue layer on top -->
+      <img class="steps-bg" src="images/about-how-it-works.jpg" alt="about how it works">
+
+      <div class="steps-head">
+        <div>
+          <span class="script">How it works?</span>
+          <h2>Simple steps to your Perfect Trips</h2>
+          <p>From choosing your destination to confirming your booking, Ghumgham keeps every step clear, simple and stress-free.</p>
+        </div>
+        <a href="trips.html" class="pill white-line small">
+          Start Planning
+          <span class="circle"><i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </div>
+
+      <div class="step-cards">
+        <div class="step-card">
+          <span class="step-icon"><i class="fa-solid fa-map-location-dot"></i></span>
+          <h3>Choose your Destination</h3>
+          <p>Browse destinations and explore travel packages that match your style and budget.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-icon"><i class="fa-regular fa-calendar"></i></span>
+          <h3>Select your package</h3>
+          <p>Compare package details, duration, pricing and included services before making your choice.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-icon"><i class="fa-regular fa-square-check"></i></span>
+          <h3>Confirm your Booking</h3>
+          <p>Submit your booking request and our team will help finalize your trip details smoothly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========== team members ========== -->
+  <section class="team">
+    <div class="container">
+      <div class="team-head">
+        <span class="script">Team Members</span>
+        <h2 class="title black">Know more about Team Members</h2>
+        <p>Get to know more about our team members who have dedicated themselves to our company with compassion and a passion for travelling.</p>
+      </div>
+
+      <!-- the team photos and names go here once the office sends them, the design only has the heading for now -->
+    </div>
+  </section>
+
+
+  <!-- ========== activities we offer ========== -->
+  <section class="bg-grey">
+    <div class="container offer-grid">
+      <div class="offer-photos">
+        <img src="images/about-activity-1.jpg" alt="about activity 1">
+        <img src="images/about-activity-2.jpg" alt="about activity 2">
+      </div>
+
+      <div>
+        <span class="script">Activities</span>
+        <h2 class="title black">Exciting Outdoor Activities We offer</h2>
+        <p class="offer-lead">What we offer activities with your interests and love for travel</p>
+
+        <div class="offer-list">
+          <a href="activity-detail.html?activity=rafting" class="offer-item">
+            <i class="fa-solid fa-water"></i>
+            <div><h3>Rafting</h3><p>Ride the rapids, feel the rush, and enjoy an unforgettable river adventure.</p></div>
+          </a>
+          <a href="activity-detail.html?activity=peak-climbing" class="offer-item">
+            <i class="fa-solid fa-mountain"></i>
+            <div><h3>Climbing</h3><p>Reach a real Himalayan summit with expert guides by your side.</p></div>
+          </a>
+          <a href="activity-detail.html?activity=trekking" class="offer-item">
+            <i class="fa-solid fa-person-hiking"></i>
+            <div><h3>Hiking</h3><p>Walk quiet trails through villages, forests and mountain views.</p></div>
+          </a>
+          <a href="activity-detail.html?activity=wildlife-safari" class="offer-item">
+            <i class="fa-solid fa-paw"></i>
+            <div><h3>Wildlife Safari</h3><p>Spot rhinos, elephants and rare birds in Nepal's national parks.</p></div>
+          </a>
+        </div>
+
+        <a href="activities.html" class="pill small">
+          Explore More
+          <span class="circle"><i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- footer comes from footer.js -->
+  <div id="site-footer"></div>
+
+  <script src="header.js"></script>
+  <script src="footer.js"></script>
+  <script src="common.js"></script>
+  <script src="about.js"></script>
+  <!-- animations for every page, keep this last -->
+  <script src="animations.js"></script>
+</body>
+</html>
