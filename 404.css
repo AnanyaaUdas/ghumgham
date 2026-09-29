@@ -1,0 +1,35 @@
+/* 404 page not found
+   header, footer and the button are shared and live in common.css */
+
+.not-found { padding: 50px 0 90px; text-align: center; }
+
+/* the signpost sways a little, like it is out in the wind */
+.not-found img {
+  width: min(500px, 100%);
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
+  transform-origin: 50% 90%;
+  animation: sway 5s ease-in-out infinite;
+}
+
+@keyframes sway { 50% { rotate: 0.8deg; } }
+
+.not-found h1 {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 12px;
+  margin: 18px 0 20px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* the big red 404 */
+.not-found h1 b { font-size: 44px; font-weight: 800; color: var(--red); }
+
+.not-found p { max-width: 320px; margin: 0 auto 18px; font-size: 13px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .not-found img { animation: none; }
+}
