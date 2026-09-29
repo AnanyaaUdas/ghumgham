@@ -1,0 +1,1123 @@
+/* shared styles for every ghumgham page
+   header, dropdown menu, buttons, headings, flags and footer live here
+   each page then has its own css file for its own sections */
+
+
+/* ---------- colors and fonts reused across the site ---------- */
+:root {
+  --red: #e53945;
+  --navy: #0d0a63;
+  --navy-box: #0a0766;
+  --dark: #14121f;
+  --text: #1b1b1f;
+  --muted: #55555f;
+  --grey-bg: #f7f7f8;
+  --border: #ececf0;
+  --white: #fff;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --script: "Snell Roundhand", "Brush Script MT", "Segoe Script", cursive;
+  --header-h: 70px;
+}
+
+
+/* ---------- basic reset ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* clip (not hidden) stops sideways scrolling without breaking the side panels that stay in view while scrolling */
+html { scroll-behavior: smooth; overflow-x: clip; }
+
+body {
+  font-family: var(--font);
+  color: var(--text);
+  line-height: 1.55;
+  overflow-x: clip;
+  padding-top: var(--header-h); /* space for the fixed header */
+}
+
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+button { font-family: inherit; }
+
+/* anything with the hidden attribute stays hidden, even if its own css sets a display */
+[hidden] { display: none !important; }
+
+/* so clicking a menu link doesn't hide the heading under the header */
+[id] { scroll-margin-top: calc(var(--header-h) + 10px); }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+section { padding: 80px 0; }
+.bg-grey { background: var(--grey-bg); }
+
+
+/* icons are from font awesome (linked in the html head), more at fontawesome.com/icons */
+
+
+/* ---------- images ---------- */
+img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+
+/* ---------- section headings ---------- */
+.script {
+  display: block;
+  font-family: var(--script);
+  color: var(--red);
+  font-size: 26px;
+  line-height: 1;
+}
+
+.title {
+  font-size: 46px;
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1.12;
+  letter-spacing: -1px;
+}
+
+.title .dot { color: var(--red); }
+
+.lead { font-size: 15px; max-width: 490px; }
+.lead.wide { max-width: 680px; margin-top: 18px; }
+
+/* heading on the left, text or button on the right */
+.head-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.head-row .pill { align-self: flex-start; margin-top: 32px; }
+
+
+/* ---------- rounded buttons with the red circle arrow ---------- */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 5px 5px 22px;
+  border: 1.5px solid var(--red);
+  border-radius: 50px;
+  background: transparent;
+  color: var(--red);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.pill .circle {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--red);
+  color: var(--white);
+  font-size: 14px;
+  transition: transform 0.3s;
+}
+
+.pill:hover { background: var(--red); color: var(--white); }
+.pill:hover .circle { background: var(--white); color: var(--red); transform: rotate(-45deg); }
+
+/* white button in the hero */
+.pill.white-fill { background: var(--white); border-color: var(--white); }
+/* on hover it turns red like the other buttons (without this the white background stayed and the white text disappeared) */
+.pill.white-fill:hover { background: var(--red); border-color: var(--red); color: var(--white); }
+
+/* white outline button on the offer banner */
+.pill.white-line { border-color: var(--white); color: var(--white); }
+.pill.white-line .circle { background: var(--white); color: var(--red); }
+.pill.white-line:hover { background: var(--white); color: var(--red); }
+
+.pill.small { padding: 4px 4px 4px 16px; font-size: 13px; }
+.pill.small .circle { width: 26px; height: 26px; }
+
+/* no arrow version, used for load more */
+.pill.plain { padding: 9px 26px; font-size: 14px; }
+
+.center { text-align: center; margin-top: 34px; }
+
+.link-under {
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.stars { color: #f0913a; font-size: 13px; letter-spacing: 1px; }
+.stars span { color: var(--muted); letter-spacing: 0; }
+
+/* location line and price, used on package cards and the mega menu cards */
+.meta { display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 500; }
+.meta i { color: var(--red); }
+
+.pkg-price {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.pkg-price small { font-size: 11px; font-weight: 400; }
+
+
+/* =================== header =================== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--white);
+  transition: box-shadow 0.3s;
+}
+
+/* js adds this when you scroll down a bit */
+.header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06); }
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-h);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.5px;
+}
+
+.logo .g { color: var(--red); font-size: 30px; font-weight: 900; line-height: 1; }
+
+.menu { display: flex; gap: 36px; }
+.menu > li { position: relative; }
+
+.menu > li > a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 24px 0;
+  font-size: 15px;
+  transition: color 0.3s;
+}
+
+.menu > li > a:hover { color: var(--red); }
+
+/* wishlist heart next to call us, with a small red count on its corner */
+.nav-right { display: flex; align-items: center; gap: 22px; }
+
+.wish-link {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  color: #ee5c7c; /* pink */
+  transition: color 0.3s, transform 0.3s;
+}
+
+.wish-link svg { width: 30px; height: 27px; }
+.wish-link:hover { color: var(--red); transform: translateY(-2px); }
+
+.wish-count {
+  position: absolute;
+  top: -4px;
+  right: -8px;
+  display: grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border: 2px solid var(--white);
+  border-radius: 9px;
+  background: var(--red);
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.wish-count[hidden] { display: none; }
+
+.menu .fa-caret-down { font-size: 12px; }
+
+/* dropdown for destination and activities */
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: -16px;
+  min-width: 180px;
+  padding: 10px 0;
+  background: var(--white);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: 0.25s;
+}
+
+.menu li:hover .dropdown { opacity: 1; visibility: visible; transform: none; }
+
+.dropdown a { display: block; padding: 8px 18px; font-size: 14px; }
+.dropdown a:hover { color: var(--red); background: var(--grey-bg); }
+
+/* ---------- destination mega menu ----------
+   the li is static so the menu lines up with the whole header, not the link */
+.menu > li.has-mega { position: static; }
+
+.mega {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  display: grid;
+  grid-template-columns: 226px 1fr 228px;
+  gap: 16px;
+  width: min(1270px, calc(100% - 40px));
+  padding: 16px;
+  background: var(--white);
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 10px);
+  transition: 0.25s;
+}
+
+.has-mega:hover .mega { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
+
+/* left column: activity and regions */
+.mega-side {
+  display: flex;
+  flex-direction: column;
+  padding: 28px 16px 0;
+  overflow: hidden;
+  background: #e3eefc;
+  border-radius: 8px;
+}
+
+.mega-icon { color: var(--red); font-size: 30px; }
+.mega-side h3 { margin: 10px 0 20px; font-size: 21px; font-weight: 600; color: var(--navy); }
+
+.mega-regions a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+  padding: 11px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  transition: 0.25s;
+}
+
+.mega-regions a.active,
+.mega-regions a:hover { background: var(--navy-box); color: var(--white); }
+
+.mega-side img { height: 150px; margin: auto -16px 0; width: calc(100% + 32px); }
+
+/* middle: 8 small package cards in 2 columns */
+.mega-packages { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.mega-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 5px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: box-shadow 0.3s;
+}
+
+.mega-card:hover { box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08); }
+.mega-card img { width: 125px; height: 110px; flex-shrink: 0; border-radius: 6px; }
+.mega-card > div { flex: 1; padding-right: 6px; }
+.mega-card .stars { font-size: 12px; }
+.mega-card h4 { margin: 2px 0 4px; font-size: 16px; font-weight: 500; }
+.mega-card .meta { font-size: 11px; }
+.mega-card .pkg-price { margin-top: 8px; padding-top: 8px; font-size: 13px; }
+.mega-card .pkg-price small { font-size: 8px; }
+
+/* right column: blue promo card */
+.mega-promo {
+  display: flex;
+  flex-direction: column;
+  padding: 28px 24px 0;
+  overflow: hidden;
+  background: linear-gradient(180deg, #3f7fd6, #2a62b8);
+  border-radius: 8px;
+  color: var(--white);
+}
+
+.mega-promo h3 { font-size: 21px; font-weight: 600; }
+.mega-promo p { margin: 8px 0 18px; font-size: 13px; color: rgba(255, 255, 255, 0.85); }
+.mega-promo .pill { align-self: flex-start; }
+.mega-promo img { flex: 1; min-height: 200px; margin: 24px -24px 0; width: calc(100% + 48px); }
+
+/* phone number on the right */
+.call { display: flex; align-items: center; gap: 10px; }
+
+.call .icon {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--red);
+  color: var(--white);
+  font-size: 14px;
+}
+
+.call small { display: block; font-size: 11px; line-height: 1.2; }
+.call strong { display: block; font-size: 18px; font-weight: 500; color: var(--red); line-height: 1.2; }
+
+/* hamburger, only shows on small screens */
+.burger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; }
+.burger span { width: 24px; height: 2px; background: var(--navy); }
+
+
+/* =================== flags ===================
+   small svg flags from images/flags, same size everywhere */
+.flag { width: 28px; height: 21px; flex-shrink: 0; object-fit: contain; }
+
+
+/* =================== footer =================== */
+/* no background of its own, so the sky of the drawing melts into whatever section sits above it */
+.footer-wrap { padding: 0 6px 6px; }
+
+/* the footer slides up over the dark foot of the mountains, its top is see-through so the drawing shows behind the text */
+.footer {
+  --lift: 90px; /* how far the footer slides up over the drawing */
+  position: relative;
+  margin-top: calc(var(--lift) * -1);
+  padding: 40px 0 22px;
+  background: linear-gradient(to bottom, transparent, var(--dark) var(--lift));
+  color: var(--white);
+  border-radius: 0 0 8px 8px;
+}
+
+/* himalaya scene on top of the footer, on small screens the svg gets cropped from the sides */
+.footer-scene { position: relative; margin: 0 -6px; overflow: hidden; } /* runs edge to edge */
+
+.footer-scene > img { height: auto; min-height: 300px; aspect-ratio: 1440 / 540; object-position: center bottom; }
+
+
+
+.footer-cols { display: grid; grid-template-columns: 1.4fr 1fr 1.1fr 1.1fr 1.2fr; gap: 24px; }
+
+.footer h6 { margin-bottom: 12px; font-size: 12px; font-weight: 500; color: #8d8b9a; letter-spacing: 0.5px; }
+.footer li { margin-bottom: 9px; font-size: 13px; }
+.footer li a:hover { color: var(--red); }
+
+.contact-list li { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.contact-list i { width: 16px;  color: var(--red); }
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-bottom .logo { color: var(--white); font-size: 18px; }
+.footer-bottom .logo .g { font-size: 24px; }
+.footer-bottom small { font-size: 10px; color: #b5b3c0; }
+
+.socials { display: flex; gap: 8px; }
+
+.socials a {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #2c2a38;
+  font-size: 12px;
+  transition: background 0.3s;
+}
+
+.socials a:first-child,
+.socials a:hover { background: var(--red); }
+
+
+/* =================== page intro ===================
+   big heading, text cut to 3 lines and read more (destination pages) */
+.intro { padding: 60px 0 24px; }
+
+.intro h1 {
+  margin: 4px 0 24px;
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -1px;
+}
+
+.intro h1 b { font-weight: 800; font-style: italic; color: var(--navy); }
+
+/* only 3 lines show until read more is clicked */
+.intro-text {
+  max-width: 830px;
+  font-size: 14px;
+  line-height: 1.65;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.intro-text.open { display: block; }
+
+.read-more {
+  margin-top: 6px;
+  padding: 0;
+  background: none;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--red);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+
+
+/* =================== package card ===================
+   used on the homepage and the destination detail slider */
+.pkg-card {
+  overflow: hidden;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.pkg-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08); }
+
+.pkg-card img { height: 192px; }
+.pkg-body { padding: 18px 20px 16px; }
+.pkg-body h4 { font-size: 19px; font-weight: 500; margin: 6px 0 8px; }
+
+
+/* =================== activity cards ===================
+   used on the activities page and the destination detail page */
+.act-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.act-card {
+  overflow: hidden;
+  background: var(--white);
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.act-card:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08); }
+
+.act-card img { height: 195px; }
+
+.act-card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px 14px 20px;
+}
+
+.act-card-body h3 { font-size: 15px; font-weight: 500; }
+.act-card-body p { font-size: 11px; color: var(--muted); }
+.act-card-body i { font-size: 12px; color: var(--red); }
+
+
+
+/* =================== breadcrumb ===================
+   small "home • page" trail under the header */
+.breadcrumb { display: flex; align-items: center; gap: 8px; padding-top: 14px; font-size: 11px; }
+.breadcrumb a { color: var(--muted); }
+.breadcrumb a:hover { color: var(--red); }
+.breadcrumb i { width: 7px; height: 7px; border-radius: 50%; background: var(--red); }
+.breadcrumb span { font-weight: 600; }
+
+/* =================== package slider ===================
+   used on the destination and activity detail pages */
+.slider-controls { display: flex; align-items: center; gap: 10px; align-self: center; }
+.slider-controls .pill { margin-top: 0; }
+
+.round-btn {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid var(--red);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--red);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.round-btn:hover { background: var(--red); color: var(--white); }
+
+/* starts in line with the container but runs to the right edge of the screen */
+.pkg-slider {
+  --edge: max(24px, calc((100vw - 1200px) / 2 + 24px));
+  display: flex;
+  gap: 14px;
+  padding: 0 24px 10px var(--edge);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: var(--edge);
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* hides the scrollbar in firefox */
+}
+
+.pkg-slider::-webkit-scrollbar { display: none; }
+
+.pkg-slider .pkg-card {
+  flex: 0 0 390px;
+  background: #fafafa;
+  scroll-snap-align: start;
+}
+
+.pkg-slider .pkg-card img { height: 195px; }
+
+
+
+/* =================== about block with photo ===================
+   text and reasons on one side, a photo on the other
+   add "reverse" to put the photo on the left */
+.about-split {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.about-split.reverse { grid-template-columns: 1fr 1.55fr; }
+
+.about-text { margin: 22px 0 36px; font-size: 14px; }
+
+.about-split h4 { margin-bottom: 12px; font-size: 16px; font-weight: 600; }
+
+.reasons li {
+  position: relative;
+  margin-bottom: 8px;
+  padding-left: 24px;
+  font-size: 13px;
+}
+
+/* small red dot bullet */
+.reasons li::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 7px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--red);
+}
+
+.photo-box { overflow: hidden; border-radius: 12px; }
+
+.photo-box img { height: 475px; transition: scale 0.6s ease; }
+.photo-box:hover img { scale: 1.04; }
+
+
+/* =================== faq ===================
+   used on the homepage and the activity detail page */
+.faq-grid { display: grid; grid-template-columns: 1fr 1.45fr; gap: 50px; }
+
+.faq-left .lead { margin-top: 18px; padding-bottom: 20px; border-bottom: 1px solid #dcdce2; font-size: 14px; }
+.faq-left .sub { margin-top: 20px; font-size: 14px; }
+.faq-left .link-under { display: inline-block; margin-top: 8px; color: var(--red); font-weight: 400; }
+
+.faq-item { margin-bottom: 8px; background: var(--white); border-radius: 6px; }
+
+.faq-q {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 14px 16px;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.faq-q i { transition: transform 0.3s; }
+.faq-item.open .faq-q i { transform: rotate(180deg); }
+
+/* answer is closed by default, js sets the height when opened */
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s; }
+.faq-a p { padding: 0 16px 14px; font-size: 13px; color: var(--muted); }
+
+.faq-more { margin-top: 14px; }
+
+/* =================== popups and photo viewer ===================
+   used by the trip detail page (book, review, photos) and the homepage gallery */
+.no-scroll { overflow: hidden; }
+
+.modal,
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(10, 10, 30, 0.6);
+}
+
+.modal-box { position: relative; width: 100%; max-width: 420px; padding: 26px; background: var(--white); border-radius: 10px; }
+.modal-box h3 { margin-bottom: 16px; font-size: 18px; color: var(--navy); }
+.modal-box label { display: block; margin-bottom: 12px; font-size: 12px; font-weight: 500; }
+
+.modal-box input,
+.modal-box select,
+.modal-box textarea {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  padding: 9px 10px;
+  border: 1px solid #d8d8de;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  background: #f1f1f4;
+  cursor: pointer;
+}
+
+.thanks { padding: 10px 0; font-size: 14px; }
+
+/* the photo is stretched to a big size even when the file itself is small
+   (width auto kept it at the file's own size, so the small exports looked tiny)
+   80vw wide, never taller than 78% of the screen, and it keeps its shape */
+.lightbox img {
+  width: min(1200px, 80vw);
+  height: auto;
+  max-height: 78vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* the photo viewer gets a darker background than the popups so the photo stands out */
+#lightbox { background: rgba(8, 8, 20, 0.88); }
+.lightbox .modal-close { position: fixed; top: 20px; right: 20px; }
+
+.lb-arrow {
+  position: fixed;
+  top: 50%;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: var(--white);
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.lb-arrow.prev { left: 20px; }
+.lb-arrow.next { right: 20px; }
+.lb-count { position: fixed; bottom: 20px; left: 0; right: 0; text-align: center; color: var(--white); font-size: 13px; }
+
+
+/* =================== small notes ===================
+   "nothing found" line under a list, and the green thank you after a form is sent */
+.empty-note { padding: 20px 0; text-align: center; font-size: 13px; color: var(--muted); }
+.form-thanks { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #2f9e5b; }
+
+
+/* =================== blog cards ===================
+   used on the homepage and the region detail page */
+.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+.blog-card { overflow: hidden; background: var(--white); border-radius: 8px; }
+.blog-card img { height: 196px; }
+
+.blog-body { padding: 14px 14px 12px; }
+.blog-body h4 { min-height: 42px; font-size: 15px; font-weight: 500; line-height: 1.4; transition: color 0.3s; }
+.blog-card:hover h4 { color: var(--red); }
+
+.blog-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+}
+
+.date { display: flex; align-items: center; gap: 6px; }
+.date i { width: 12px; height: 12px; border-radius: 50%; background: var(--red); }
+
+.read { display: flex; align-items: center; gap: 6px; font-weight: 500; }
+.read i { color: var(--red); transition: transform 0.3s; }
+.blog-card:hover .read i { transform: translateX(4px); }
+
+
+
+/* =================== region cards ===================
+   used on the activity detail and region detail pages */
+.region-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.region-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 145px;
+  overflow: hidden;
+  border-radius: 10px;
+  color: var(--white);
+  text-align: center;
+}
+
+.region-card img {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  transition: transform 0.5s;
+}
+
+/* dark blue layer so the white text is readable on any photo */
+.region-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 10, 99, 0.45);
+}
+
+.region-card:hover img { transform: scale(1.08); }
+
+/* the name sits above the dark layer */
+.region-card h3 { position: relative; z-index: 1; font-size: 17px; font-weight: 500; }
+.region-card small { position: relative; z-index: 1; font-size: 11px; }
+
+
+/* =================== package listing with filters ===================
+   the markup and the filter code live in listing.js
+   used on the trips page and the region detail page */
+.listing {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+
+/* ---------- filters ---------- */
+/* the filter panel stays in view while the results scroll, and scrolls inside itself if it is taller than the screen */
+.filters {
+  position: sticky;
+  top: calc(var(--header-h) + 20px);
+  align-self: start;
+  max-height: calc(100vh - var(--header-h) - 40px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.filters h3 {
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.filter-group { border-bottom: 1px solid var(--border); }
+
+.filter-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 14px 0;
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.filter-head i { font-size: 11px; transition: transform 0.3s; }
+.filter-group.open .filter-head i { transform: rotate(180deg); }
+
+/* body is hidden until the group is opened */
+.filter-body { display: none; padding-bottom: 14px; }
+.filter-group.open .filter-body { display: block; }
+
+.filter-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* the real checkbox is hidden, .tick is the round box people see */
+.filter-option input { position: absolute; opacity: 0; pointer-events: none; }
+
+.tick {
+  display: grid;
+  place-items: center;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid var(--text);
+  border-radius: 50%;
+  font-size: 8px;
+  color: var(--white);
+}
+
+.filter-option input:checked + .tick { background: var(--red); border-color: var(--red); }
+
+.filter-option input:checked + .tick::before {
+  content: "\f00c"; /* font awesome check icon */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+}
+
+.filter-option input:focus-visible + .tick { outline: 2px solid var(--navy); outline-offset: 2px; }
+
+
+/* ---------- budget slider ---------- */
+.budget { display: flex; align-items: center; gap: 8px; padding-top: 26px; font-size: 11px; }
+
+.budget-track { position: relative; flex: 1; height: 4px; background: #e2e2e8; border-radius: 4px; }
+
+.budget-fill { position: absolute; top: 0; bottom: 0; background: var(--red); border-radius: 4px; }
+
+/* the two sliders sit on top of the track, only their round thumbs can be grabbed */
+.budget-track input {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  margin: 0;
+  transform: translateY(-50%);
+  background: none;
+  pointer-events: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.budget-track input::-webkit-slider-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--red);
+  border: none;
+  pointer-events: auto;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+
+.budget-track input::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--red);
+  border: none;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* small dark labels above each thumb */
+.budget-bubble {
+  position: absolute;
+  bottom: 12px;
+  padding: 1px 5px;
+  transform: translateX(-50%);
+  background: var(--navy-box);
+  border-radius: 3px;
+  font-size: 9px;
+  color: var(--white);
+  white-space: nowrap;
+}
+
+
+/* ---------- results ---------- */
+.results-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.results-count { font-size: 15px; font-weight: 500; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: #f1f1f4;
+  border: none;
+  border-radius: 20px;
+  font-size: 11px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.chip i { color: var(--red); }
+.chip:hover { background: #e7e7ec; }
+
+.sort { font-size: 13px; color: var(--muted); white-space: nowrap; }
+
+.sort select {
+  padding: 2px 4px;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+.result-grid .pkg-card { background: #fafafa; }
+.result-grid .pkg-card img { height: 150px; }
+.result-grid .pkg-body { padding: 12px 14px; }
+.result-grid .pkg-body h4 { font-size: 15px; margin: 4px 0; }
+.result-grid .meta { font-size: 11px; }
+.result-grid .pkg-price { margin-top: 10px; padding-top: 10px; font-size: 13px; }
+.result-grid .pkg-price small { font-size: 9px; }
+
+.no-results { display: none; padding: 40px 0; text-align: center; color: var(--muted); }
+.no-results.show { display: block; }
+
+/* =================== tablets =================== */
+@media (max-width: 1024px) {
+  .menu { gap: 22px; }
+  .title { font-size: 38px; }
+  .footer-cols { grid-template-columns: repeat(3, 1fr); }
+  .act-grid { grid-template-columns: repeat(3, 1fr); }
+  .region-grid { grid-template-columns: repeat(3, 1fr); }
+  .result-grid { grid-template-columns: 1fr 1fr; }
+}
+
+
+/* =================== small tablets and big phones =================== */
+@media (max-width: 860px) {
+  section { padding: 56px 0; }
+
+  /* header turns into the hamburger menu */
+  .burger { display: flex; }
+  .call { display: none; }
+  .nav-right { margin-left: auto; margin-right: 16px; }
+
+  .menu {
+    position: fixed;
+    top: var(--header-h);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    padding: 10px 24px 20px;
+    background: var(--white);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: 0.3s;
+  }
+
+  .menu.show { opacity: 1; visibility: visible; transform: none; }
+  .menu > li > a { padding: 12px 0; }
+
+  .dropdown { position: static; display: none; padding: 0 0 8px; box-shadow: none; opacity: 1; visibility: visible; transform: none; }
+  .menu li:hover .dropdown { display: block; }
+
+  /* mega menu turns into a simple region list */
+  .mega { position: static; display: none; width: auto; padding: 0 0 8px; box-shadow: none; opacity: 1; visibility: visible; transform: none; }
+  .has-mega:hover .mega { display: block; transform: none; }
+  .mega-side { padding: 0; background: none; }
+  .mega-icon,
+  .mega-side h3,
+  .mega-side img,
+  .mega-packages,
+  .mega-promo { display: none; }
+
+  .head-row { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .head-row .pill { margin-top: 0; }
+  .title { font-size: 32px; }
+  .intro h1 { font-size: 38px; }
+
+  .footer-cols { grid-template-columns: 1fr 1fr; }
+  .footer-scene > img { min-height: 320px; }
+  .footer { --lift: 60px; }
+  .act-grid,
+  .region-grid,
+  .blog-grid { grid-template-columns: 1fr 1fr; }
+
+  .slider-controls { align-self: flex-start; }
+  .pkg-slider .pkg-card { flex-basis: 300px; }
+  .about-split,
+  .about-split.reverse,
+  .faq-grid { grid-template-columns: 1fr; gap: 36px; }
+  .photo-box img { height: 320px; }
+
+  .listing { grid-template-columns: 1fr; }
+  .filters { position: static; max-height: none; overflow: visible; }
+  .results-top { flex-direction: column; }
+}
+
+
+/* =================== phones =================== */
+@media (max-width: 560px) {
+  .container { padding: 0 16px; }
+  .intro h1 { font-size: 30px; }
+  .footer-cols { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 14px; }
+  .act-grid,
+  .blog-grid,
+  .result-grid { grid-template-columns: 1fr; }
+  .pkg-slider .pkg-card { flex-basis: 260px; }
+}
