@@ -1,0 +1,3 @@
+# netlify settings for the plain html site
+# the home address (ghumgham-1.netlify.app/) shows homepage.html, the address bar stays as it is
+/    /homepage.html    200
